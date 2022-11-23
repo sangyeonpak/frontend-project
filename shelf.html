@@ -23,24 +23,21 @@
   <body>
     <!-- ================================================== navbar template =================================================================== -->
     <nav class="navbar navbar-expand-sm navbar-light bg-light">
-      <a href="#" class="navbar-brand ms-3">Sangyeon Pak</a>
+      <a href="#" class="navbar-brand ms-3">Spotify</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"></button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
         <!-- the ul class below is necessary to populate the buttons for linkedin / github dropdown -->
         <ul class="navbar-nav mr-auto">
-
-          <!-- linkedin -->
+          <!-- What to put here -->
           <li class="nav-item active">
-            <a class="nav-link" href="https://www.linkedin.com/in/sangyeonpak/">Resume (LinkedIn)</a>
+            <a class="nav-link" data-bs-toggle="offcanvas"  href="#savedAlbums" role="button">Saved Albums</a>
           </li>
           <!-- dropdown menu -->
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Projects (GitHub)</a>
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Folders</a>
             <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-              <li><a class="dropdown-item" href="https://github.com/sangyeonpak/mcsp-exercise-ajax-tv-show-finder">AJAX TV Show Finder</a></li>
-              <li><a class="dropdown-item" href="https://github.com/sangyeonpak/mcsp-twiddler">Twiddler</a></li>
-              <li><a class="dropdown-item" href="https://github.com/sangyeonpak/mcsp-project-pixel-art-maker">Pixel Art Maker</a></li>
+              <li><a class="dropdown-item" href="#">Wishlist</a></li>
             </ul>
           </li>
         </ul>
@@ -51,21 +48,30 @@
 
 
 
+    <!-- ============================================ off canvas (saved albums) ============================================================== -->
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="savedAlbums" aria-labelledby="whatDoesAriaDo">
+      <div class="offcanvas-header text-dark">
+        <h5 class="offcanvas-title" id="offcanvasExampleLabel">Offcanvas</h5>
+        <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+      </div>
+      <div class="offcanvas-body text-dark">
+        <div>
+          Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists, etc.
+        </div>
+      </div>
+    </div>
+    <!-- ===================================================================================================================================== -->
+
+
+
+
 
     <!-- ================================================= jumbotron template ================================================================= -->
     <div class="jumbotron">
       <p class="p-3"></p>
-      <h1 class="ps-3 lead display-1 d-inline bg-light text-dark">Shelf&nbsp</h1>
-      <p class="lead m-5">Add your favorite albums from Spotify to your Shelf.</p>
-
+      <h1 class="p-3 lead display-4 d-inline bg-light text-dark">Sangyeon's Shelf&nbsp</h1>
+      <p class="lead m-5">4 vinyl records, 2 CDs, and 0 tapes on the Shelf.</p>
       <hr class="my-4">
-      <br>
-      <h4 class="ms-3">This div is an example of Bootstrap 5.0's stylized div called Jumbotron.</h4>
-      <br>
-      <p class="ms-5">Bootstrap is a very strong tool that can let you design very cool things.</p>
-      <p class="ms-5">Their styles are bound in their classes but are easy to use. You can also chain them intuitively.</p>
-      <br>
-      <a href="https://getbootstrap.com/docs/5.0/getting-started/introduction/" class="ms-3 fst-italic fw-bolder text-decoration-none text-success">Read more about the documentation here.</a>
       <div class="m-5"></div>
     </div>
     <!-- ====================================================================================================================================== -->
@@ -176,8 +182,9 @@
 
 
   <!-- ================================================= jumbotron template ================================================================= -->
-  <div>
+  <div class="text-center">
     <hr class="my-4">
-    <p class="text-secondary text-center"><small>This was a fun project. <br>There's just too many features that Bootstrap offers to go over them all.</small></p>
+    <p class="text-secondary text-center"><small>Check out my LinkedIn. <br>Or my GitHub.</small></p>
+    <a href="https://getbootstrap.com/docs/5.0/getting-started/introduction/" class="ms-3 fst-italic fw-bolder text-decoration-none text-success">Made using Bootstrap and Spotify API</a>
   </div>
   <!-- ====================================================================================================================================== -->
