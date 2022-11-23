@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Shelf (Bootstrap Showcase)</title>
+    <title>Your Met</title>
 
     <!-- Latest compiled and minified CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -16,14 +16,22 @@
     <!-- Latest compiled JavaScript -->
     <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
     <script defer src="shelf.js"></script>
+
+    <!-- imported font -->
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Lora:wght@500&display=swap');
+      </style>
   </head>
 
 
 
   <body>
     <!-- ================================================== navbar template =================================================================== -->
-    <nav class="navbar navbar-expand-sm navbar-light bg-light">
-      <a href="#" class="navbar-brand ms-3">Spotify</a>
+    <nav class="navbar navbar-expand-sm bg-light navbar-danger">
+      <div class="container" id="navbar">
+      <a class="navbar-brand" href="https://www.metmuseum.org/" title="Homepage" id="homeButton">
+        <img src="images/metlogo.png" alt="" width="40" height="40">
+      </a></div>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"></button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
@@ -50,15 +58,20 @@
 
     <!-- ============================================ off canvas (saved albums) ============================================================== -->
     <div class="offcanvas offcanvas-start" tabindex="-1" id="savedAlbums" aria-labelledby="whatDoesAriaDo">
-      <div class="offcanvas-header text-dark">
-        <h5 class="offcanvas-title" id="offcanvasExampleLabel">Offcanvas</h5>
+
+      <div class="offcanvas-header text-dark" id="likedAlbums">
+        <h5 class="offcanvas-title" id="offcanvasExampleLabel">Liked Albums</h5>
         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
-      <div class="offcanvas-body text-dark">
-        <div>
-          Some text as placeholder. In real life you can have the elements you have chosen. Like, text, images, lists, etc.
-        </div>
+
+      <div class="offcanvas-header text-dark" id="ownedAlbums">
+        <h5 class="offcanvas-title" id="offcanvasExampleLabel">Albums Owned</h5>
       </div>
+
+      <div class="offcanvas-header text-dark" id="wishlist">
+        <h5 class="offcanvas-title" id="offcanvasExampleLabel">Wishlist</h5>
+      </div>
+
     </div>
     <!-- ===================================================================================================================================== -->
 
@@ -66,11 +79,11 @@
 
 
 
-    <!-- ================================================= jumbotron template ================================================================= -->
+    <!-- ======================================================== username ================================================================= -->
     <div class="jumbotron">
       <p class="p-3"></p>
-      <h1 class="p-3 lead display-4 d-inline bg-light text-dark">Sangyeon's Shelf&nbsp</h1>
-      <p class="lead m-5">4 vinyl records, 2 CDs, and 0 tapes on the Shelf.</p>
+      <h1 class="p-3 lead display-2 d-inline bg-light text-dark" id='username'>Sangyeon's Met&nbsp</h1>
+      <h2 class="lead display-6 m-5 text-light">Seen 40 artworks and a critic of 30.</h2>
       <hr class="my-4">
       <div class="m-5"></div>
     </div>
@@ -78,78 +91,11 @@
 
 
 
-
+<div id="belowUsername">
 
     <!-- ============================================= the "shelf" (bootstrap grid templates) ================================================= -->
     <!-- big container -->
-    <div class="container">
-      <p class="text-center">Sangyeon's Shelf</p>
-
-      <!-- row for 3 albums -->
-      <div class="row" id="rowActual">
-
-        <!-- column (section for album) -->
-        <div class="col">
-          <div class="row">
-            <span class="border">
-              <div class="row">
-                <div class="col">
-                  <img src="images/placeholder.jpg" alt="Add an album here!" class="rounded"></img>
-                </div>
-                <div class="col">
-                  <ul class="text-end">
-                    <li>Album Name</li>
-                    <li>Artist</li>
-                    <li>Year</li>
-                  </ul>
-                </div>
-              </div>
-              <button type='button' class="btn btn-success float-end" data-bs-toggle="modal" data-bs-target="#searchAlbum" id="addAlbumBtn">+</button>
-            </span>
-          </div>
-        </div>
-
-        <!-- column (section for album) -->
-        <div class="col">
-          <div class="row">
-            <span class="border">
-              <div class="row">
-                <div class="col">
-                  <img src="images/placeholder.jpg" alt="Add an album here!" class="rounded" ></img>
-                </div>
-                <div class="col">
-                  <ul class="text-end">
-                    <li>Album Name</li>
-                    <li>Artist</li>
-                    <li>Year</li>
-                  </ul>
-                </div>
-              </div>
-            <button type='button' class="btn btn-success float-end" data-bs-toggle="modal" data-bs-target="#searchAlbum" id="addAlbumBtn">+</button></span>
-          </div>
-        </div>
-
-        <!-- column (section for album) -->
-        <div class="col">
-          <div class="row">
-            <span class="border">
-              <div class="row">
-                <div class="col">
-                  <img src="images/placeholder.jpg" alt="Add an album here!" class="rounded" ></img>
-                </div>
-                <div class="col">
-                  <ul class="text-end">
-                    <li>Album Name</li>
-                    <li>Artist</li>
-                    <li>Year</li>
-                  </ul>
-                </div>
-              </div>
-              <button type='button' class="btn btn-success float-end" data-bs-toggle="modal" data-bs-target="#searchAlbum" id="addAlbumBtn">+</button></span>
-          </div>
-        </div>
-        <button class="btn btn-success float-end" id="addRow">+</button>
-      </div>
+    <div id="artworkDisplay">test</div>
     <!-- ====================================================================================================================================== -->
 
 
@@ -181,10 +127,15 @@
 
 
 
-  <!-- ================================================= jumbotron template ================================================================= -->
-  <div class="text-center">
+  <!-- ============================================================ footer ================================================================= -->
+  <footer>
+    <div class="text-center">
     <hr class="my-4">
-    <p class="text-secondary text-center"><small>Check out my LinkedIn. <br>Or my GitHub.</small></p>
-    <a href="https://getbootstrap.com/docs/5.0/getting-started/introduction/" class="ms-3 fst-italic fw-bolder text-decoration-none text-success">Made using Bootstrap and Spotify API</a>
-  </div>
+    <p class="text-light text-center"><small>Check out my LinkedIn. <br>Or my GitHub.</small></p>
+    <a href="https://getbootstrap.com/docs/5.0/getting-started/introduction/" class="ms-3 fst-italic fw-bolder text-decoration-none text-light">Made using Bootstrap and with the courtesy of the Metropolitan Museum of New York API</a>
+    </div>
+  </footer>
   <!-- ====================================================================================================================================== -->
+</div>
+  </body>
+</html>

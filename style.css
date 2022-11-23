@@ -1,8 +1,35 @@
 body {
-  background-color: black;
-  color: white;
+  background-color: #e4002b;
+  color: black;
 }
+
+#username {
+  font-family: 'Lora', serif;
+}
+
+#navbar {
+  height:60px;
+}
+#homeButton {
+  margin-left: 105px;
+}
+#belowUsername{
+  background-color: white;
+  padding: 50px;
+  margin: 50px;
+}
+
 
 #searchAlbum{
   color: black;
+}
+
+
+#rowActual{
+  display: flex;
+}
+
+
+footer {
+
 }

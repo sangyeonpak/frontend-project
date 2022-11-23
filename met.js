@@ -51,15 +51,10 @@ addRow();
 $searchButton = $('#searchButton');
 $searchBar = $('#searchBar');
 
-console.log($searchBar);
 function searchAlbums(){ // will continue after i learn more on how to use Spotify's api
-  console.log('testing');
-  console.log($searchBar.val());
   if ($searchBar.val() != ''){
-    console.log('correct;')
-    $.get(`https://api.spotify.com/v1/albums/${$searchBar.val()}`, (data) => {
+    $.get(`https://api.spotify.com/v1/search?q=${$searchBar.val()}type=album`, (data) => {
       console.log(data);
-      console.log('correct');
     })
   }
 }
@@ -67,3 +62,4 @@ function searchAlbums(){ // will continue after i learn more on how to use Spoti
 $searchButton.click(()=>{
   searchAlbums();
 });
+//==================================================================================================================================================//
