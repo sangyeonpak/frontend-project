@@ -1,4 +1,4 @@
-//================================================== add row button on the bottom to put more shelves ============================================//
+//================================================== change theme ============================================//
 let $addRow = $('#addRow'); // call button to add rows
 let $container = $('.container'); // call container
 let $addAlbumBtn = $('#addAlbumBtn'); // call button to add albums (non-functional right now)
@@ -47,19 +47,49 @@ addRow();
 
 
 
-//======================================================= searching for albums (WIP) =============================================================//
-$searchButton = $('#searchButton');
-$searchBar = $('#searchBar');
+//======================================================= searching for artwork (WIP) =============================================================//
+let $searchButton = $('#searchButton');
+let $searchBar = $('#searchBar');
+let $modalResults = $('#modal-results');
+let $closeSearch = $('.closeSearch')
 
-function searchAlbums(){ // will continue after i learn more on how to use Spotify's api
+console.log($closeSearch);
+
+function searchArtwork(){
+  console.log($searchButton.val());
   if ($searchBar.val() != ''){
-    $.get(`https://api.spotify.com/v1/search?q=${$searchBar.val()}type=album`, (data) => {
-      console.log(data);
+    console.log('hello');
+    $.get(`https://collectionapi.metmuseum.org/public/collection/v1/search?q=${$searchBar.val()}`, (data) => {
+      console.log(data.total);
+      if(data.total === 0){
+        $modalResults.append('<h3> Oops! Please enter a valid name of an artist or artwork.');
+      } else{
+        let index = 0;
+        while (index < 9){
+          let $resultDiv = $('<div id="resultDiv"></div>');
+          let $resultImg = $('<div id="resultImg"></div>');
+          let $resultInfo = $('<div id="resultInfo"></div>');
+          $modalResults.append($resultDiv);
+          $resultDiv.append($resultImg);
+          $resultDiv.append($resultInfo);
+          index++;
+        }
+      }
     })
+  } else{
+
+    $modalResults.append('<h3> Oops! Please enter a valid name of an artist or artwork.');
   }
 }
 
+
+
 $searchButton.click(()=>{
-  searchAlbums();
+  searchArtwork();
+});
+
+$closeSearch.click(()=>{
+  $searchBar.val('');
+  $modalResults.empty();
 });
 //==================================================================================================================================================//

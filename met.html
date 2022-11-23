@@ -15,7 +15,7 @@
 
     <!-- Latest compiled JavaScript -->
     <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script defer src="shelf.js"></script>
+    <script defer src="met.js"></script>
 
     <!-- imported font -->
     <style>
@@ -95,7 +95,35 @@
 
     <!-- ============================================= the "shelf" (bootstrap grid templates) ================================================= -->
     <!-- big container -->
-    <div id="artworkDisplay">test</div>
+    <div id="artworkDisplay">
+      <div class="row" id="displayRow">
+
+        <div class="col text-center" id="columns">
+          <div id="imageContainer">
+            <img src="images/placeholder.jpg">
+          <button type="button" class="btn btn-secondary" id="addArtworkBtn" data-bs-toggle="modal" data-bs-target="#searchArt">+</button>
+          </div>
+        </div>
+
+        <div class="col text-center" id="columns">
+          <div id="imageContainer">
+            <img src="images/placeholder.jpg">
+          <button type="button" class="btn btn-secondary" id="addArtworkBtn" data-bs-toggle="modal" data-bs-target="#searchArt">+</button>
+          </div>
+        </div>
+
+        <div class="col text-center" id="columns">
+          <div id="imageContainer">
+            <img src="images/placeholder.jpg">
+          <button type="button" class="btn btn-secondary" id="addArtworkBtn" data-bs-toggle="modal" data-bs-target="#searchArt">+</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="row" id="addMoreRows">
+        &nbsp<button type="button" class="btn btn-secondary">+</button>
+      </div>
+    </div>
     <!-- ====================================================================================================================================== -->
 
 
@@ -103,18 +131,21 @@
 
 
     <!-- ====================================================== modal (and search bar inside) ===================================================-->
-      <div class="modal fade" id="searchAlbum" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
+      <div class="modal fade" id="searchArt" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
           <div class="modal-content">
             <div class="modal-header">
-              <h5 class="modal-title">Need Spotify API</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button> <!--the x button up top-->
+              <h5 class="modal-title">Search for Artwork</h5>
+              <button type="button" class="closeSearch btn-close" data-bs-dismiss="modal" aria-label="Close"></button> <!--the x button up top-->
             </div>
             <div class="modal-body">
-              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" id="searchBar"> <!--from navbar section in BS documentation-->
+              <span><input class="form-control me-2 mb-5" type="search" placeholder="Search" aria-label="Search" id="searchBar"></span>
+              <div id="modal-results"></div>
+
+
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="closeSearch btn btn-secondary" data-bs-dismiss="modal">Close</button>
               <button type="button" class="btn btn-primary" id="searchButton">Search</button>
             </div>
           </div>
