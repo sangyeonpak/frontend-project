@@ -51,28 +51,46 @@ addRow();
 let $searchButton = $('#searchButton');
 let $searchBar = $('#searchBar');
 let $modalResults = $('#modal-results');
-let $closeSearch = $('.closeSearch')
+let $closeSearch = $('.closeSearch');
+let $showMore = $('<button class="btn btn-secondary" id="showMore">Show more</button>');
 
-console.log($closeSearch);
 
 function searchArtwork(){
-  console.log($searchButton.val());
   if ($searchBar.val() != ''){
-    console.log('hello');
     $.get(`https://collectionapi.metmuseum.org/public/collection/v1/search?q=${$searchBar.val()}`, (data) => {
       console.log(data.total);
+      console.log(data);
+
+      let index = 0;
+
+      function createResults(){
+        let $resultDiv = $('<div id="resultDiv"></div>');
+        let $resultImg = $('<div id="resultImg"></div>');
+        let $resultInfo = $('<div id="resultInfo"></div>');
+        $modalResults.append($resultDiv);
+        $resultDiv.append($resultImg);
+        $resultDiv.append($resultInfo);
+
+      }
+
       if(data.total === 0){
         $modalResults.append('<h3> Oops! Please enter a valid name of an artist or artwork.');
       } else{
-        let index = 0;
-        while (index < 9){
-          let $resultDiv = $('<div id="resultDiv"></div>');
-          let $resultImg = $('<div id="resultImg"></div>');
-          let $resultInfo = $('<div id="resultInfo"></div>');
-          $modalResults.append($resultDiv);
-          $resultDiv.append($resultImg);
-          $resultDiv.append($resultInfo);
-          index++;
+        if (data.total < 5){
+          while (index < data.total){
+            createResults();
+            console.log(data.objectIDs);
+            $.get(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${data.objectIDs}`, (result)=>{
+              console.log(result);
+            });
+            index++;
+          }
+        } else{
+          while (index < 4){
+            createResults();
+            index++;
+          }
+          $modalResults.append($showMore);
         }
       }
     })
@@ -81,7 +99,6 @@ function searchArtwork(){
     $modalResults.append('<h3> Oops! Please enter a valid name of an artist or artwork.');
   }
 }
-
 
 
 $searchButton.click(()=>{

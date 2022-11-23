@@ -42,12 +42,12 @@ body {
 }
 
 #resultDiv{
-  height: 300px;
+  height: 400px;
   border:1px solid black;
   display: flex;
 }
 #resultImg{
-  width:30%;
+  width:500px;
 
   border:1px solid black;
 
