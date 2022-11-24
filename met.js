@@ -61,16 +61,46 @@ function searchArtwork(){
       console.log(data.total);
       console.log(data);
 
+
       let index = 0;
 
       function createResults(){
-        let $resultDiv = $('<div id="resultDiv"></div>');
-        let $resultImg = $('<div id="resultImg"></div>');
-        let $resultInfo = $('<div id="resultInfo"></div>');
+        let $resultDiv = $('<div class="resultDiv"></div>');
+        let $resultImgDiv = $('<div class="resultImgDiv"></div>');
+        let $resultInfoDiv = $('<div class="resultInfoDiv"></div>');
         $modalResults.append($resultDiv);
-        $resultDiv.append($resultImg);
-        $resultDiv.append($resultInfo);
+        $resultDiv.append($resultImgDiv);
+        $resultDiv.append($resultInfoDiv);
+        $.get(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${data.objectIDs[index]}`, (result)=>{
+          console.log(result);
 
+          let $resultImage = $(`<img src=${result.primaryImageSmall}></img>`);
+          $resultImgDiv.append($resultImage);
+
+          let $resultArtist = $(`<div class="resultArtist">${result.artistDisplayName}</div>`);
+          result.artistDisplayName != '' ? $resultInfoDiv.append($resultArtist) : $resultInfoDiv.append('<div class="resultArtist">Unknown artist</div>');
+
+
+          let $resultArtwork = $(`<div class="resultArtwork">${result.title}</div>`);
+          switch (result.title){
+            case '':
+              $resultInfoDiv.append('<div class="resultArtwork">Unnamed</div>');
+              break;
+            default:
+              $resultInfoDiv.append($resultArtwork);
+              break;
+          }
+
+          let $resultYear = $(`<div class="resultYear">${result.objectDate}</div>`);
+          if (result.objectDate === ''){
+            $resultInfoDiv.append('<div class="resultYear">Year unknown</div>')
+          } else{
+          $resultInfoDiv.append($resultYear);
+          }
+
+          let $resultLocation = $(`<div class="resultLocation">${result.department}</div>`);
+          result.department != '' ? $resultInfoDiv.append($resultLocation) : $resultInfoDiv.append('<div class="resultLocation">Currently not in the museum</div>');
+        });
       }
 
       if(data.total === 0){
@@ -79,21 +109,41 @@ function searchArtwork(){
         if (data.total < 5){
           while (index < data.total){
             createResults();
-            console.log(data.objectIDs);
-            $.get(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${data.objectIDs}`, (result)=>{
-              console.log(result);
-            });
+            // $.get(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${data.objectIDs}`, (result)=>{
+            //   console.log(result);
+            //   let $resultImage = $(`<img src=${result.primaryImage}></img>`);
+            //   $resultImgDiv.append($resultImage);
+            // });
             index++;
           }
         } else{
-          while (index < 4){
+          while (index < 5){
             createResults();
             index++;
           }
           $modalResults.append($showMore);
+          $showMore.click(()=>{
+            $showMore.detach();
+            createResults();
+            index++;
+            $modalResults.append($showMore);
+          })
         }
       }
     })
+    function createResults(){
+      let $resultDiv = $('<div id="resultDiv"></div>');
+      let $resultImgDiv = $('<div id="resultImgDiv"></div>');
+      let $resultInfoDiv = $('<div id="resultInfoDiv"></div>');
+      $modalResults.append($resultDiv);
+      $resultDiv.append($resultImgDiv);
+      $resultDiv.append($resultInfoDiv);
+      $.get(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${data.objectIDs[index]}`, (result)=>{
+        console.log(result);
+        let $resultImage = $(`<img src=${result.primaryImageSmall}></img>`);
+        $resultImgDiv.append($resultImage);
+      });
+    }
   } else{
 
     $modalResults.append('<h3> Oops! Please enter a valid name of an artist or artwork.');
@@ -102,6 +152,8 @@ function searchArtwork(){
 
 
 $searchButton.click(()=>{
+
+  $modalResults.empty();
   searchArtwork();
 });
 

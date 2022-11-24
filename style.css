@@ -3,6 +3,13 @@ body {
   color: black;
 }
 
+img {
+  height: 100%;
+  max-width: 100%;
+  display: block;
+  margin: auto;
+}
+
 #username {
   font-family: 'Lora', serif;
 }
@@ -33,29 +40,37 @@ body {
   display:inline-block;
   text-align:center;
   border:1px solid black;
+  padding: 5px;
 }
 
-#addArtworkBtn {
+.addArtworkBtn {
   position:absolute;
   bottom:10px;
   right:10px;
 }
 
-#resultDiv{
-  height: 400px;
+.resultDiv{
+  height: auto;
   border:1px solid black;
   display: flex;
-}
-#resultImg{
-  width:500px;
-
-  border:1px solid black;
+  padding: 5px;
 
 }
-#resultInfo{
-  width:70%;
-
+.resultImgDiv{
+  width:600px;
   border:1px solid black;
+  padding: 5px;
+}
+
+
+.resultArtist,
+.resultArtwork,
+.resultYear,
+.resultLocation,
+.resultInfoDiv{
+  width:100%;
+  border:1px solid black;
+  padding: 5px;
 }
 
 
