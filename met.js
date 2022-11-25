@@ -155,14 +155,13 @@ let targetBox;
 $('.addArtworkBtn').click((event)=>{
   targetBox = event.target.id;
   console.log('my button id is:', event.target.id);
-
 })
 
 // search artwork
 $searchButton.click(()=>{
-    $modalResults.empty();
-    searchArtwork(targetBox);
-  });
+  $modalResults.empty();
+  searchArtwork(targetBox);
+});
 //=====================================================================================================================================================
 let containerIndex = 4;
 let containerIndexEnd = 7;
@@ -178,17 +177,17 @@ function addRow(containerIndex){
     $artworkDisplay.append($addedRow);
 
     while (containerIndex < containerIndexEnd){
-      console.log(containerIndex);
+      console.log('container index', containerIndex);
       let $column = $('<div class="col text-center"></div>');
-      let $addedImageContainer = $(`<div class="imageContainer" id="imageContainer${containerIndex}></div>`);
+      let $addedImageContainer = $(`<div class="imageContainer" id="imageContainer${containerIndex}"></div>`);
       $addedRow.append($column);
       $column.append($addedImageContainer);
-      $addedImageContainer.append('<img src="images/placeholder.jpg>');
+      $addedImageContainer.append('<img src="images/placeholder.jpg">');
       $addedImageContainer.append(`<button type="button" class="addArtworkBtn btn btn-secondary" id="${containerIndex}" data-bs-toggle="modal" data-bs-target="#searchArt">+</button>`)
       containerIndex++;
     }
     containerIndexEnd += 3;
-    console.log(containerIndexEnd);
+    console.log('new max', containerIndexEnd);
 
     let $addRowBtnDiv = $('<div class="row" id="addRowBtnDiv"></div>');
     $artworkDisplay.append($addRowBtnDiv);
