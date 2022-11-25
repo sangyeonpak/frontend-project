@@ -1,69 +1,20 @@
-//================================================== change theme ============================================//
-let $addRow = $('#addRow'); // call button to add rows
-let $container = $('.container'); // call container
-let $addAlbumBtn = $('#addAlbumBtn'); // call button to add albums (non-functional right now)
-
-function addRow(){
-  $addRow.click(()=>{
-
-    // get rid of the add row button from the bottom (for now)
-    $addRow.detach();
-
-    // create the main row (shelf) div
-    let $rowActual = $('<div></div>').addClass('row').attr('id', 'addedRow');
-
-    // append the row to container div
-    $container.append($rowActual);
-
-    // creating the same column structure like in the HTML 3 times within the main row div
-    for (var i = 0; i < 3; i++){
-      let $column = $('<div></div>').addClass('col');
-      let $rowInner = $('<div></div>').addClass('row');
-      let $border = $('<span></span>').addClass('border');
-      let $rowUnderBorder = $('<div></div>').addClass('row');
-      let $columnImg = $('<div></div>').addClass('col');
-      let $placeholder = $('<img>').attr('src', 'images/placeholder.jpg').attr('alt','Add an album here').addClass('rounded');
-      let $columnText = $('<div></div>').addClass('col');
-      let $addAlbumBtn = $('<button></button>').attr('type','button').attr('id','addAlbumBtn').addClass('btn btn-success float-end').attr('data-bs-toggle','modal').attr('data-bs-target','#searchAlbum').text('+');
-      $rowActual.append($column);
-      $column.append($rowInner);
-      $rowInner.append($border);
-      $border.append($rowUnderBorder);
-      $rowUnderBorder.append($columnImg);
-      $rowUnderBorder.append($columnText);
-      $columnImg.append($placeholder);
-      $columnText.append('<ul></ul>').append('<li>test</li>');
-      $border.append($addAlbumBtn);
-    }
-
-    // re-attach the add row button to the bottom after creating the row div after the for loop
-    $rowActual.append($addRow);
-  });
-}
-
-addRow();
-//================================================================================================================================================//
-
-
-
-
-//======================================================= searching for artwork (WIP) =============================================================//
 let $searchButton = $('#searchButton');
 let $searchBar = $('#searchBar');
 let $modalResults = $('#modal-results');
 let $closeSearch = $('.closeSearch');
 let $showMore = $('<button class="btn btn-secondary" id="showMore">Show more</button>');
 
-
-function searchArtwork(){
+//=====================================================================================================================================================
+//=================================================== THE MAIN FUNCTION, searchArtwork(event.target.id) ===============================================
+//=====================================================================================================================================================
+function searchArtwork(ID){
+  let index = 0;
   if ($searchBar.val() != ''){
     $.get(`https://collectionapi.metmuseum.org/public/collection/v1/search?q=${$searchBar.val()}`, (data) => {
-      console.log(data.total);
-      console.log(data);
 
 
-      let index = 0;
 
+//============================================================== function createResults() =============================================================
       function createResults(){
         let $resultDiv = $('<div class="resultDiv"></div>');
         let $resultImgDiv = $('<div class="resultImgDiv"></div>');
@@ -72,58 +23,106 @@ function searchArtwork(){
         $resultDiv.append($resultImgDiv);
         $resultDiv.append($resultInfoDiv);
         $.get(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${data.objectIDs[index]}`, (result)=>{
-          console.log(result);
+          console.log(ID);
 
-          let $resultImage = $(`<img src=${result.primaryImageSmall}></img>`);
+//append image to result div
+          let $resultImage = $(`<a href="${result.objectURL}"><img src="${result.primaryImageSmall}" alt="Currently unavailable for view on YourMet. Click me to view the art on our main website."></img><a>`);
           $resultImgDiv.append($resultImage);
+          let $appendArtBtn = $('<button type="button" class="appendArtBtn btn btn-danger" data-bs-dismiss="modal">+</button>');
+          $resultInfoDiv.append($appendArtBtn);
 
-          let $resultArtist = $(`<div class="resultArtist">${result.artistDisplayName}</div>`);
-          result.artistDisplayName != '' ? $resultInfoDiv.append($resultArtist) : $resultInfoDiv.append('<div class="resultArtist">Unknown artist</div>');
+//append artist name to result div
+          let $resultArtist = $(`<div class="resultArtist fs-5">${result.artistDisplayName} (${result.artistBeginDate}-${result.artistEndDate})</div>`);
+          let $resultArtistToPut = $(`<div>${result.artistDisplayName}</div>`);
+          result.artistDisplayName != '' ? $resultInfoDiv.append($resultArtist) : $resultInfoDiv.append('<div class="resultArtist fs-5">Unknown artist</div>');
 
-
-          let $resultArtwork = $(`<div class="resultArtwork">${result.title}</div>`);
+//append artwork name to result div
+          let $resultArtwork = $(`<div class="resultArtwork display-5 fst-italic">${result.title}</div>`);
+          let $resultArtworkToPut = $(`<div class="resultArtwork fst-italic">${result.title}</div>`);
           switch (result.title){
             case '':
-              $resultInfoDiv.append('<div class="resultArtwork">Unnamed</div>');
+              $resultInfoDiv.append('<div class="resultArtwork display-5 fst-italic">Unnamed</div>');
               break;
             default:
               $resultInfoDiv.append($resultArtwork);
               break;
           }
-
-          let $resultYear = $(`<div class="resultYear">${result.objectDate}</div>`);
+//append year created to result div
+          let $resultYear = $(`<div class="resultYear fs-5">${result.objectDate}</div>`);
+          let $resultYearToPut = $(`<div>${result.objectDate}</div>`);
           if (result.objectDate === ''){
-            $resultInfoDiv.append('<div class="resultYear">Year unknown</div>')
+            $resultInfoDiv.append('<div class="resultYear fs-5">Year unknown</div>')
           } else{
-          $resultInfoDiv.append($resultYear);
+            $resultInfoDiv.append($resultYear);
           }
 
-          let $resultLocation = $(`<div class="resultLocation">${result.department}</div>`);
-          result.department != '' ? $resultInfoDiv.append($resultLocation) : $resultInfoDiv.append('<div class="resultLocation">Currently not in the museum</div>');
+//append location to result div
+          let $resultLocation = $(`<div class="resultLocation fs-5">${result.department}</div>`);
+          result.department != '' ? $resultInfoDiv.append($resultLocation) : $resultInfoDiv.append('<div class="resultLocation fs-5">Currently not in the museum</div>');
+
+//append result to the container you chose
+          let $imageContainer = $(`#imageContainer${ID}`);
+          $appendArtBtn.click((ID)=>{
+
+//empty previous image, modal, and what you searched
+            $imageContainer.empty();
+            $modalResults.empty();
+            $searchBar.val('');
+//=====================================================================================================================================================
+
+
+
+//=============================================== append result to the container you chose ============================================================
+            $imageContainer.append($resultImage);
+            $imageContainer.append(`<button type="button" class="addArtworkBtn btn btn-secondary" id="${ID}" data-bs-toggle="modal" data-bs-target="#searchArt">+</button>`);
+            result.artistDisplayName != '' ? $imageContainer.append($resultArtistToPut) : $imageContainer.append('<div>Unknown artist</div>');
+            switch (result.title){
+              case '':
+                $imageContainer.append('<div class="fst-italic">Unnamed</div>');
+                break;
+              default:
+                $imageContainer.append($resultArtworkToPut);
+                break;
+            }
+            if (result.objectDate === ''){
+              $imageContainer.append('<div>Year unknown</div>')
+            } else{
+              $imageContainer.append($resultYearToPut);
+            }
+          });
         });
       }
+//=====================================================================================================================================================
 
+
+
+//================================================================= search cases ======================================================================
       if(data.total === 0){
         $modalResults.append('<h3> Oops! Please enter a valid name of an artist or artwork.');
       } else{
+
+// less than 5 results
         if (data.total < 5){
           while (index < data.total){
             createResults();
-            // $.get(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${data.objectIDs}`, (result)=>{
-            //   console.log(result);
-            //   let $resultImage = $(`<img src=${result.primaryImage}></img>`);
-            //   $resultImgDiv.append($resultImage);
-            // });
             index++;
           }
+
+// more than 5 results
         } else{
           while (index < 5){
             createResults();
             index++;
           }
+
+// show more button
           $modalResults.append($showMore);
           $showMore.click(()=>{
             $showMore.detach();
+            createResults();
+            index++;
+            createResults();
+            index++;
             createResults();
             index++;
             $modalResults.append($showMore);
@@ -131,34 +130,71 @@ function searchArtwork(){
         }
       }
     })
-    function createResults(){
-      let $resultDiv = $('<div id="resultDiv"></div>');
-      let $resultImgDiv = $('<div id="resultImgDiv"></div>');
-      let $resultInfoDiv = $('<div id="resultInfoDiv"></div>');
-      $modalResults.append($resultDiv);
-      $resultDiv.append($resultImgDiv);
-      $resultDiv.append($resultInfoDiv);
-      $.get(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${data.objectIDs[index]}`, (result)=>{
-        console.log(result);
-        let $resultImage = $(`<img src=${result.primaryImageSmall}></img>`);
-        $resultImgDiv.append($resultImage);
-      });
-    }
-  } else{
 
+// when you don't put anything in the search bar
+  } else{
     $modalResults.append('<h3> Oops! Please enter a valid name of an artist or artwork.');
   }
 }
+//=====================================================================================================================================================
+//=====================================================================================================================================================
+//=====================================================================================================================================================
 
 
-$searchButton.click(()=>{
 
-  $modalResults.empty();
-  searchArtwork();
-});
 
+//================================================================== firing all other buttons =========================================================
+// close search modal
 $closeSearch.click(()=>{
   $searchBar.val('');
   $modalResults.empty();
 });
-//==================================================================================================================================================//
+
+// finding the event.target.id
+let targetBox;
+$('.addArtworkBtn').click((event)=>{
+  targetBox = event.target.id;
+  console.log('my button id is:', event.target.id);
+
+})
+
+// search artwork
+$searchButton.click(()=>{
+    $modalResults.empty();
+    searchArtwork(targetBox);
+  });
+//=====================================================================================================================================================
+let containerIndex = 4;
+let containerIndexEnd = 7;
+let $addRow = $('#addRowBtn');
+let $artworkDisplay = $('#artworkDisplay');
+
+function addRow(containerIndex){
+  $addRow.click(()=>{
+    let $prevAddRowBtnDiv = $('#addRowBtnDiv');
+    $addRow.detach();
+    $prevAddRowBtnDiv.remove();
+    let $addedRow = $('<div class="displayRow row"></div>');
+    $artworkDisplay.append($addedRow);
+
+    while (containerIndex < containerIndexEnd){
+      console.log(containerIndex);
+      let $column = $('<div class="col text-center"></div>');
+      let $addedImageContainer = $(`<div class="imageContainer" id="imageContainer${containerIndex}></div>`);
+      $addedRow.append($column);
+      $column.append($addedImageContainer);
+      $addedImageContainer.append('<img src="images/placeholder.jpg>');
+      $addedImageContainer.append(`<button type="button" class="addArtworkBtn btn btn-secondary" id="${containerIndex}" data-bs-toggle="modal" data-bs-target="#searchArt">+</button>`)
+      containerIndex++;
+    }
+    containerIndexEnd += 3;
+    console.log(containerIndexEnd);
+
+    let $addRowBtnDiv = $('<div class="row" id="addRowBtnDiv"></div>');
+    $artworkDisplay.append($addRowBtnDiv);
+    $addRowBtnDiv.append($addRow);
+  });
+}
+
+addRow(containerIndex);
+//================================================================================================================================================//

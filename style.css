@@ -29,13 +29,13 @@ img {
   padding:30px;
 }
 
-#columns{
+.col{
   border-style: solid;
   margin-left: 10px;
   margin-right: 10px;
 }
 
-#imageContainer {
+.imageContainer {
   position:relative;
   display:inline-block;
   text-align:center;
@@ -51,17 +51,22 @@ img {
 
 .resultDiv{
   height: auto;
-  border:1px solid black;
+  border:1px solid lightgray;
   display: flex;
   padding: 5px;
 
 }
 .resultImgDiv{
   width:600px;
-  border:1px solid black;
   padding: 5px;
 }
 
+.appendArtBtn{
+  position:relative;
+  bottom: -85%;
+  right:-92%;
+  border: 2px solid black;
+}
 
 .resultArtist,
 .resultArtwork,
@@ -69,7 +74,6 @@ img {
 .resultLocation,
 .resultInfoDiv{
   width:100%;
-  border:1px solid black;
   padding: 5px;
 }
 
