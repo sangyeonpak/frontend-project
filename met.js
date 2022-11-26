@@ -104,8 +104,6 @@ function searchArtwork(ID){
           let $imageContainer = $(`#imageContainer${ID}`);
           function appendArt(ID){
             $appendArtBtn.click(()=>{
-              console.log('my id is ', ID)
-
 // empty previous image, modal, and what you searched
               $imageContainer.empty();
               $modalResults.empty();
@@ -141,7 +139,7 @@ function searchArtwork(ID){
               $displayCount.text($displayCountCounter)
             });
           };// end of appendArt(ID);
-          appendArt(ID)
+          appendArt(ID);
         });// closes off api GET
       }
 
