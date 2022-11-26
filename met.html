@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Your Met</title>
+    <title>YourMet</title>
 
     <!-- Latest compiled and minified CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -35,17 +35,18 @@
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"></button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
-        <!-- the ul class below is necessary to populate the buttons for linkedin / github dropdown -->
         <ul class="navbar-nav mr-auto">
           <!-- What to put here -->
           <li class="nav-item active">
-            <a class="nav-link" data-bs-toggle="offcanvas"  href="#savedAlbums" role="button">Something here</a>
+            <a class="nav-link" data-bs-toggle="offcanvas"  href="#savedAlbums" role="button"></a>
           </li>
           <!-- dropdown menu -->
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">Folders</a>
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">View Your Gallery</a>
             <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-              <li><a class="dropdown-item" href="#">Wishlist</a></li>
+              <li><a class="dropdown-item" href="#">Seen</a></li>
+              <li><a class="dropdown-item" href="#">Reviewed</a></li>
+              <li><a class="dropdown-item" href="#">On Display</a></li>
             </ul>
           </li>
         </ul>
@@ -60,16 +61,16 @@
     <div class="offcanvas offcanvas-start" tabindex="-1" id="savedAlbums" aria-labelledby="whatDoesAriaDo">
 
       <div class="offcanvas-header text-dark" id="likedAlbums">
-        <h5 class="offcanvas-title" id="offcanvasExampleLabel">Liked Albums</h5>
+        <h5 class="offcanvas-title" id="offcanvasExampleLabel">Seen</h5>
         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
 
       <div class="offcanvas-header text-dark" id="ownedAlbums">
-        <h5 class="offcanvas-title" id="offcanvasExampleLabel">Albums Owned</h5>
+        <h5 class="offcanvas-title" id="offcanvasExampleLabel">Reviewed</h5>
       </div>
 
       <div class="offcanvas-header text-dark" id="wishlist">
-        <h5 class="offcanvas-title" id="offcanvasExampleLabel">Wishlist</h5>
+        <h5 class="offcanvas-title" id="offcanvasExampleLabel">On Display</h5>
       </div>
 
     </div>
@@ -80,12 +81,12 @@
 
 
     <!-- ======================================================== username ================================================================= -->
-    <div class="jumbotron">
+    <div class="jumbotron" id="usernameDiv">
       <p class="p-3"></p>
       <h1 class="p-3 lead display-2 d-inline bg-light text-dark" id='username'>Sangyeon's Met&nbsp</h1>
-      <h2 class="lead display-6 m-5 text-light">Seen 40 artworks, a critic of 30, and a curator of 60.</h2>
-      <hr class="my-4">
-      <div class="m-5"></div>
+      <h2 class="lead display-6 mt-5 ms-5 text-light">Seen <span id="seenCount"></span> artworks, a critic of <span id="reviewCount"></span>, and a curator of <span id="displayCount"></span>.</h2>
+      <hr class="mt-4">
+      <div class="m-1"></div>
     </div>
     <!-- ====================================================================================================================================== -->
 
@@ -93,28 +94,28 @@
 
 <div id="belowUsername">
 
-    <!-- ============================================= the "shelf" (bootstrap grid templates) ================================================= -->
+    <!-- ========================================================= the gallery ==================================================================== -->
     <!-- big container -->
     <div id="artworkDisplay">
       <div class="displayRow row">
 
         <div class="col text-center">
           <div class="imageContainer" id="imageContainer1">
-            <img src="images/placeholder.jpg">
+            <img src="images/placeholder.jpg" class="displayedImages placeholder">
           <button type="button" class="addArtworkBtn btn btn-secondary" id="1" data-bs-toggle="modal" data-bs-target="#searchArt">+</button>
           </div>
         </div>
 
         <div class="col text-center">
           <div class="imageContainer" id="imageContainer2">
-            <img src="images/placeholder.jpg">
+            <img src="images/placeholder.jpg" class="displayedImages placeholder">
           <button type="button" class="addArtworkBtn btn btn-secondary" id="2" data-bs-toggle="modal" data-bs-target="#searchArt">+</button>
           </div>
         </div>
 
         <div class="col text-center">
           <div class="imageContainer" id="imageContainer3">
-            <img src="images/placeholder.jpg">
+            <img src="images/placeholder.jpg" class="displayedImages placeholder">
           <button type="button" class="addArtworkBtn btn btn-secondary" id="3" data-bs-toggle="modal" data-bs-target="#searchArt">+</button>
           </div>
         </div>
@@ -159,14 +160,17 @@
 
 
   <!-- ============================================================ footer ================================================================= -->
-  <footer>
-    <div class="text-center">
-    <hr class="my-4">
-    <p class="text-light text-center"><small>Check out my LinkedIn. <br>Or my GitHub.</small></p>
-    <a href="https://getbootstrap.com/docs/5.0/getting-started/introduction/" class="ms-3 fst-italic fw-bolder text-decoration-none text-light">Made using Bootstrap and with the courtesy of the Metropolitan Museum of New York API</a>
-    </div>
-  </footer>
+    <footer>
+      <div class="text-center">
+      <hr class="my-4">
+      <a href="https://www.linkedin.com/in/sangyeonpak/" target="_blank" class="text-light"><small>Check out my LinkedIn.</small></a>
+      <br>
+      <a href="https://www.linkedin.com/in/sangyeonpak/" target="_blank" class="text-light"><small>Or my GitHub.</small></a>
+      <br>
+      <a href="https://getbootstrap.com/docs/5.0/getting-started/introduction/" class="ms-3 fst-italic fw-bolder text-decoration-none text-light">Made using Bootstrap and with the courtesy of the Metropolitan Museum of New York</a>
+      </div>
+    </footer>
   <!-- ====================================================================================================================================== -->
-</div>
+  </div>
   </body>
 </html>
