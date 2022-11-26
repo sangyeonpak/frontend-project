@@ -1,6 +1,20 @@
-// icons
-let $eye = $('<button class="notSeen"><img src="images/not-seen.png"></button>');
-let $eyeFilled = $('<button class="seen"><img src="images/seen.png"></button>');
+/* unfilled eye
+
+`<button class="notSeen"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
+<path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"/>
+<path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>
+</svg></button>`);
+
+*/
+
+/* filled eye
+
+`<button class="seen"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
+<path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"/>
+<path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>
+</svg></button>`;
+
+*/
 
 // for main function, searchArtwork() and the modal within it
 
@@ -88,39 +102,47 @@ function searchArtwork(ID){
 
 //=============================================== append result to the container you chose (red + button) =============================================
           let $imageContainer = $(`#imageContainer${ID}`);
-          $appendArtBtn.click((ID)=>{
+          function appendArt(ID){
+            $appendArtBtn.click(()=>{
+              console.log('my id is ', ID)
 
 // empty previous image, modal, and what you searched
-            $imageContainer.empty();
-            $modalResults.empty();
-            $searchBar.val('');
+              $imageContainer.empty();
+              $modalResults.empty();
+              $searchBar.val('');
 
 // the appending part
-            $imageContainer.append($resultImage);
-            $imageContainer.append(`<button type="button" class="addArtworkBtn btn btn-secondary" id="${ID}" data-bs-toggle="modal" data-bs-target="#searchArt">+</button>`);
-            $imageContainer.append($eye);
-            result.artistDisplayName != '' ? $imageContainer.append($resultArtistToPut) : $imageContainer.append('<div>Unknown artist</div>');
-            switch (result.title){
-              case '':
-                $imageContainer.append('<div class="fst-italic">Unnamed</div>');
-                break;
-              default:
-                $imageContainer.append($resultArtworkToPut);
-                break;
-            }
-            if (result.objectDate === ''){
-              $imageContainer.append('<div>Year unknown</div>')
-            } else{
-              $imageContainer.append($resultYearToPut);
-            }
+              $imageContainer.append($resultImage);
+              $imageContainer.append(`<button type="button" class="addArtworkBtn btn fw-bold" id="${ID}" data-bs-toggle="modal" data-bs-target="#searchArt">+</button>`);
+              $imageContainer.append(`<button class="notSeen btn" id="notSeen${ID}"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
+              <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"/>
+              <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>
+              </svg></button>`);
+              seenID();
+              result.artistDisplayName != '' ? $imageContainer.append($resultArtistToPut) : $imageContainer.append('<div>Unknown artist</div>');
+              switch (result.title){
+                case '':
+                  $imageContainer.append('<div class="fst-italic">Unnamed</div>');
+                  break;
+                default:
+                  $imageContainer.append($resultArtworkToPut);
+                  break;
+              }
+              if (result.objectDate === ''){
+                $imageContainer.append('<div>Year unknown</div>')
+              } else{
+                $imageContainer.append($resultYearToPut);
+              }
 
 // imagecontainer - placeholder = on display count
-            let $imageContainerCount = $('.imageContainer').length;
-            let $placeHolderCount = $('.placeholder').length
-            $displayCountCounter = $imageContainerCount - $placeHolderCount;
-            $displayCount.text($displayCountCounter)
-          });
-        });
+              let $imageContainerCount = $('.imageContainer').length;
+              let $placeHolderCount = $('.placeholder').length
+              $displayCountCounter = $imageContainerCount - $placeHolderCount;
+              $displayCount.text($displayCountCounter)
+            });
+          };// end of appendArt(ID);
+          appendArt(ID)
+        });// closes off api GET
       }
 
 
@@ -180,7 +202,7 @@ $closeSearch.click(()=>{
   $modalResults.empty();
 });
 
-// making finding the event.target.id possible for + buttons
+// making finding the addArtwork target.id possible, gotta call findID() again when rows are added
 let targetBox;
 function findID(){
   $('.addArtworkBtn').click((event)=>{
@@ -189,6 +211,15 @@ function findID(){
   })
 }
 findID();
+
+// making finding seen target.id possible, gotta call seenID whenever art is appended
+let seenTargetBox;
+function seenID(){
+  $('.notSeen').click((event)=>{
+    seenTargetBox = event.target.id;
+    console.log('my button id is:', event.target.id);
+  })
+}
 
 // search artwork clickevent;
 $searchButton.click(()=>{
@@ -227,6 +258,9 @@ function addRow(containerIndex){
 }
 
 addRow(containerIndex);
+
+//================================================================== seen button ======================================================================
+
 //=====================================================================================================================================================
 //=====================================================================================================================================================
 //=====================================================================================================================================================

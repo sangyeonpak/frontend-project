@@ -10,7 +10,7 @@ body {
 img {
   height: 100%;
   max-width: 100%;
-  display: block;
+  /* display: block; not sure what this does but tut included it */
   margin: auto;
 }
 
@@ -55,14 +55,15 @@ img {
   position:absolute;
   bottom:10px;
   right:10px;
+  border: 1px solid rgb(188, 188, 188);
 }
 
-.seenButton {
+.notSeen,
+.seen {
   position:absolute;
   bottom:10px;
   left:10px;
-  width: 50px;
-  height: 50px;
+  border: 1px solid rgb(188, 188, 188);;
 }
 
 .resultDiv{
