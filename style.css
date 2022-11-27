@@ -58,6 +58,10 @@ img {
   border: 1px solid rgb(188, 188, 188);
 }
 
+#addRowBtn,
+#showMore {
+  border: 1px solid rgb(188, 188, 188);
+}
 .notSeen,
 .seen {
   position:absolute;

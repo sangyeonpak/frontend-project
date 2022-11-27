@@ -16,7 +16,7 @@ let $searchButton = $('#searchButton');
 let $searchBar = $('#searchBar');
 let $modalResults = $('#modal-results');
 let $closeSearch = $('.closeSearch');
-let $showMore = $('<button class="btn btn-secondary" id="showMore">Show more</button>');
+let $showMore = $('<button class="btn fw-bold" id="showMore">Show more</button>');
 
 // for addRow()
 let $addRow = $('#addRowBtn');
@@ -24,17 +24,18 @@ let $artworkDisplay = $('#artworkDisplay');
 let containerIndex = 4;
 let containerIndexEnd = 7;
 
-// for <div id="usernameDiv">
+// for <div id="usernameDiv">, the counter
 let $seenCount = $('#seenCount');
-let $reviewCount = $('#reviewCount');
-let $displayCount = $('#displayCount');
 let $seenCountCounter = 0;
-let $reviewCountCounter = 0;
-let $displayCountCounter = 0;
 $seenCount.text($seenCountCounter);
-$reviewCount.text($reviewCountCounter);
+
+let $displayCount = $('#displayCount');
+let $displayCountCounter = 0;
 $displayCount.text($displayCountCounter);
 
+// let $reviewCount = $('#reviewCount');
+// let $reviewCountCounter = 0;
+// $reviewCount.text($reviewCountCounter);
 
 //=====================================================================================================================================================
 //=================================================== the main function, searchArtwork(event.target.id) ===============================================
@@ -219,6 +220,8 @@ function seenID(ID){
     $tempSeenBtn.detach();
     $tempSeenOff = $(`<button class="seen btn" id="seen${ID}"><svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16"><path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/><path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/></svg></button>`);
     $(`#imageContainer${ID}`).append($tempSeenOff);
+    $seenCountCounter++;
+    $seenCount.text($seenCountCounter);
     seenOff(ID);
   })
 }
@@ -228,6 +231,8 @@ function seenOff(ID){
     console.log('just clicked FILLED eye; id is:', event.target.id);
     $($tempSeenOff).detach();
     $(`#imageContainer${ID}`).append($tempSeenBtn);
+    $seenCountCounter--;
+    $seenCount.text($seenCountCounter);
   })
 }
 
@@ -253,8 +258,8 @@ function addRow(containerIndex){
       let $addedImageContainer = $(`<div class="imageContainer" id="imageContainer${containerIndex}"></div>`);
       $addedRow.append($column);
       $column.append($addedImageContainer);
-      $addedImageContainer.append('<img src="images/placeholder.jpg" class="displayedImages align-middle">');
-      $addedImageContainer.append(`<button type="button" class="addArtworkBtn btn btn-secondary" id="${containerIndex}" data-bs-toggle="modal" data-bs-target="#searchArt">+</button>`)
+      $addedImageContainer.append('<img src="images/placeholder.jpg" class="displayedImages placeholder">');
+      $addedImageContainer.append(`<button type="button" class="addArtworkBtn btn fw-bold" id="${containerIndex}" data-bs-toggle="modal" data-bs-target="#searchArt">+</button>`)
       containerIndex++;
     }
     containerIndexEnd += 3;
