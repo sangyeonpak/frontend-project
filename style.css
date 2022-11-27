@@ -20,7 +20,20 @@ img {
 
 #navbar {
   height:60px;
+  color:#e4002b;
 }
+
+
+
+.navbarText{
+  color: #e4002b;
+  font-weight:bold;
+}
+
+#galleryDropdown{
+  border: 1px solid #e4002b
+}
+
 #homeButton {
   margin-left: 105px;
 }
@@ -88,8 +101,8 @@ img {
 }
 
 .appendArtBtn{
-  position:relative;
-  bottom: -85%;
+  position: relative;
+  bottom: -5;
   right:-92%;
 }
 
