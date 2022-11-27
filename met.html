@@ -42,11 +42,10 @@
           </li>
           <!-- dropdown menu -->
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">View Your Gallery</a>
-            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-              <li><a class="dropdown-item" href="#">Seen</a></li>
-              <li><a class="dropdown-item" href="#">Reviewed</a></li>
-              <li><a class="dropdown-item" href="#">On Display</a></li>
+            <a class="nav-link dropdown-toggle" id="galleryDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">View Your Gallery</a>
+            <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="galleryDropdown">
+              <li><a class="dropdown-item" data-bs-toggle="offcanvas" href="#savedArtwork">Seen</a></li>
+              <li><a class="dropdown-item" data-bs-toggle="offcanvas" href="#savedArtwork">On Display</a></li>
             </ul>
           </li>
         </ul>
@@ -57,22 +56,27 @@
 
 
 
-    <!-- ============================================ off canvas (saved albums) ============================================================== -->
-    <div class="offcanvas offcanvas-start" tabindex="-1" id="savedAlbums" aria-labelledby="whatDoesAriaDo">
+    <!-- ============================================ off canvas (saved artwork) ============================================================== -->
+    <div class="offcanvas offcanvas-start" tabindex="-1" id="savedArtwork" aria-labelledby="whatDoesAriaDo">
 
-      <div class="offcanvas-header text-dark" id="likedAlbums">
-        <h5 class="offcanvas-title" id="offcanvasExampleLabel">Seen</h5>
+      <div class="offcanvas-header text-dark" id="yourGallery">
+        <h5 class="offcanvas-title" id="offcanvasExampleLabel">Your Gallery</h5>
         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
+        <div class="offcanvas-body">
+          <div><h5>Seen Artworks</h5></div>
+          <div>
+            <div id="seenCanvas">
+            </div>
+          </div>
+          <div><h5>On Display</h5></div>
+          <div>
+            <div id="onDisplayCanvas">
 
-      <div class="offcanvas-header text-dark" id="ownedAlbums">
-        <h5 class="offcanvas-title" id="offcanvasExampleLabel">Reviewed</h5>
+            </div>
+          </div>
+        </div>
       </div>
-
-      <div class="offcanvas-header text-dark" id="wishlist">
-        <h5 class="offcanvas-title" id="offcanvasExampleLabel">On Display</h5>
-      </div>
-
     </div>
     <!-- ===================================================================================================================================== -->
 

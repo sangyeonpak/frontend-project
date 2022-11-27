@@ -33,10 +33,8 @@ let $displayCount = $('#displayCount');
 let $displayCountCounter = 0;
 $displayCount.text($displayCountCounter);
 
-// let $reviewCount = $('#reviewCount');
-// let $reviewCountCounter = 0;
-// $reviewCount.text($reviewCountCounter);
-
+let resultArtworkSeenGlobal;
+let resultArtistSeenGlobal;
 //=====================================================================================================================================================
 //=================================================== the main function, searchArtwork(event.target.id) ===============================================
 //=====================================================================================================================================================
@@ -67,12 +65,18 @@ function searchArtwork(ID){
 
 //append artist name to result div
           let $resultArtist = $(`<div class="resultArtist fs-5">${result.artistDisplayName} (${result.artistBeginDate}-${result.artistEndDate})</div>`);
-          let $resultArtistToPut = $(`<div class="displayedArtistName text-wrap">${result.artistDisplayName}</div>`);
+          let $resultArtistToPut;
+          result.artistDisplayName != '' ? $resultArtistToPut = $(`<div class="displayedArtistName text-wrap">${result.artistDisplayName}</div>`) : $resultArtistToPut = $('<div>Unknown</div>');
+          let resultArtistToPutCanvas
+          result.artistDisplayName != '' ? resultArtistToPutCanvas = result.artistDisplayName : resultArtistToPutCanvas = 'Unknown';
           result.artistDisplayName != '' ? $resultInfoDiv.append($resultArtist) : $resultInfoDiv.append('<div class="resultArtist fs-5">Unknown artist</div>');
 
 //append artwork name to result div
           let $resultArtwork = $(`<div class="resultArtwork display-5 fst-italic">${result.title}</div>`);
-          let $resultArtworkToPut = $(`<div class="displayedArtwork fst-italic text-wrap">${result.title}</div>`);
+          let $resultArtworkToPut;
+          result.title != '' ? $resultArtworkToPut = $(`<div class="displayedArtwork fst-italic text-wrap">${result.title}</div>`) : $resultArtworkToPut = $('<div class="fst-italic">Unnamed</div>');
+          let resultArtworkToPutCanvas;
+          result.title != '' ? resultArtworkToPutCanvas = `<span class="fst-italic">${result.title}</span>` : resultArtworkToPutCanvas = `<span class="fst-italic">Unnamed</span>`;
           switch (result.title){
             case '':
               $resultInfoDiv.append('<div class="resultArtwork display-5 fst-italic">Unnamed</div>');
@@ -114,20 +118,18 @@ function searchArtwork(ID){
               $imageContainer.append($addArtworkBtn);
               $imageContainer.append($seenBtn);
               seenID(ID);
-              result.artistDisplayName != '' ? $imageContainer.append($resultArtistToPut) : $imageContainer.append('<div>Unknown artist</div>');
-              switch (result.title){
-                case '':
-                  $imageContainer.append('<div class="fst-italic">Unnamed</div>');
-                  break;
-                default:
-                  $imageContainer.append($resultArtworkToPut);
-                  break;
-              }
+              $imageContainer.append($resultArtistToPut);
+              $imageContainer.append($resultArtworkToPut);
               if (result.objectDate === ''){
                 $imageContainer.append('<div>Year unknown</div>')
               } else{
                 $imageContainer.append($resultYearToPut);
               }
+
+// appending to offcanvas
+              let $onDisplayCanvas = $('#onDisplayCanvas');
+              $(`#canvasArt${ID}`).remove();
+              $onDisplayCanvas.append(`<div id="canvasArt${ID}">${resultArtistToPutCanvas} - ${resultArtworkToPutCanvas}</div>`);
 
 // imagecontainer - placeholder = on display count
               let $imageContainerCount = $('.imageContainer').length;
@@ -222,6 +224,10 @@ function seenID(ID){
     $(`#imageContainer${ID}`).append($tempSeenOff);
     $seenCountCounter++;
     $seenCount.text($seenCountCounter);
+    let $onDisplayCanvasArt = $(`#canvasArt${ID}`);
+    let $seenCanvas = $('#seenCanvas');
+    $seenCanvas.append(`<div id="seenArt${ID}">${($onDisplayCanvasArt).html()}</div>`);
+
     seenOff(ID);
   })
 }
@@ -231,6 +237,8 @@ function seenOff(ID){
     console.log('just clicked FILLED eye; id is:', event.target.id);
     $($tempSeenOff).detach();
     $(`#imageContainer${ID}`).append($tempSeenBtn);
+    let $seenArt = $(`#seenArt${ID}`);
+    $seenArt.remove();
     $seenCountCounter--;
     $seenCount.text($seenCountCounter);
   })
