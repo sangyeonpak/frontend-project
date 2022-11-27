@@ -67,6 +67,10 @@ img {
   z-index: 5;
 }
 
+.notSeen {
+  opacity: 50%;
+}
+
 .resultDiv{
   height: auto;
   border:1px solid lightgray;
