@@ -10,7 +10,6 @@ body {
 img {
   height: 100%;
   max-width: 100%;
-  /* display: block; not sure what this does but tut included it */
   margin: auto;
 }
 
@@ -22,8 +21,6 @@ img {
   height:60px;
   color:#e4002b;
 }
-
-
 
 .navbarText{
   color: #e4002b;
@@ -75,6 +72,7 @@ img {
 #showMore {
   border: 1px solid rgb(188, 188, 188);
 }
+
 .notSeen,
 .seen {
   position:absolute;
@@ -120,6 +118,7 @@ img {
   margin-left: 45px;
   margin-right: 45px;
 }
+
 footer {
   padding-bottom: 30px;
 }

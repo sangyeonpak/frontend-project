@@ -196,7 +196,7 @@ function searchArtwork(ID){
 
 
 //=====================================================================================================================================================
-//===================================================== other buttons and important functions =========================================================
+//===========================================empty========== other buttons and important functions =========================================================
 //=====================================================================================================================================================
 
 //clears results when you close the search modal
@@ -215,7 +215,7 @@ let targetBox; // id parameter!!! important: used for all button event.target.id
 function findID(){
   $('.addArtworkBtn').click((event)=>{
     targetBox = event.target.id;
-    console.log('my button id is:', event.target.id);
+    // console.log('my button id is:', event.target.id);
   })
 }
 findID(); // fire for the first three art that's there
@@ -289,8 +289,8 @@ function addRow(containerIndex){
     let $addedRow = $('<div class="displayRow row"></div>');
     $artworkDisplay.append($addedRow);
 
-    while (containerIndex < containerIndexEnd){
-      console.log('container index', containerIndex);
+    while (containerIndex < containerIndexEnd){ // needed a containerIndexEnd instead of containerIndex+3 because otherwise infi-loop
+      // console.log('container index', containerIndex);
       let $column = $('<div class="col text-center"></div>');
       let $addedImageContainer = $(`<div class="imageContainer" id="imageContainer${containerIndex}"></div>`);
       $addedRow.append($column);
@@ -300,7 +300,7 @@ function addRow(containerIndex){
       containerIndex++;
     }
     containerIndexEnd += 3;
-    console.log('new max', containerIndexEnd);
+    // console.log('new max', containerIndexEnd);
 
     let $addRowBtnDiv = $('<div class="row mt-3" id="addRowBtnDiv"></div>');
     $artworkDisplay.append($addRowBtnDiv);
