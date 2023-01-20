@@ -8,6 +8,7 @@ function Gallery(props) {
   }
   return (
     <div className="gallery">
+    {props.map}
       <Row image={props.image}/>
       <div className="addRowDiv">
         <button className="addRowButton" onClick={addRow}>+</button>

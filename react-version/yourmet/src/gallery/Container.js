@@ -1,7 +1,7 @@
 import placeholder from "../images/placeholder.jpg";
 
 function Container(props) {
-  console.log(props.image);
+  // console.log(props.image);
   return (
     <div className="container">
       <div className="imageContainer">
