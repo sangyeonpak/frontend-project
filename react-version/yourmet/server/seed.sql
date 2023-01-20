@@ -1,1 +1,3 @@
-INSERT INTO sangyeonpak (id, image_url, artwork_url, artwork_name, artist, year, seen) VALUES (1, 'test', 'test', 'test', 'test', 'test', false);
+INSERT INTO sangyeonpak (image_id, image_url, info_url, name, artist, year, seen) VALUES (null, null, null, null, null, null, false);
+INSERT INTO sangyeonpak (image_id, image_url, info_url, name, artist, year, seen) VALUES (null, null, null, null, null, null, false);
+INSERT INTO sangyeonpak (image_id, image_url, info_url, name, artist, year, seen) VALUES (null, null, null, null, null, null, false);

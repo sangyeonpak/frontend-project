@@ -39,35 +39,30 @@ body{
 }
 
 .gallery {
+  display:flex;
   background-color: white;
   margin: 50px;
+  flex-wrap: wrap;
 }
 
-.row{
-  display: flex;
-}
 
 .container{
-  display: flex;
   margin: auto;
 }
 
 img {
-  height: 100%;
-  max-width: 100%;
-  margin: auto;
+  width: 100%;
 }
 
 .imageContainer{
   position:relative;
-  display:inline-block;
   text-align:center;
   background-color: rgb(252, 252, 252);
   border:1px solid lightgray;
   padding: 5px;
-  margin: 5px;
-  position: relative;
+  margin: 30px;
   top: 50%;
+  min-width: 300px;
   transform: translateY(0%);
 }
 

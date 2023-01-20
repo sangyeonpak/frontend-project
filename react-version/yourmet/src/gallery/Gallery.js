@@ -1,18 +1,14 @@
-import Row from "./Row.js";
+import Container from "./Container.js";
 
 function Gallery(props) {
-  function addRow(){
-    return (
-      <Row image={props.image}/>
-    )
-  }
+
+  // console.log(props.gallery);
   return (
     <div className="gallery">
-    {props.map}
-      <Row image={props.image}/>
-      <div className="addRowDiv">
-        <button className="addRowButton" onClick={addRow}>+</button>
-      </div>
+    {props.gallery.map((data) => (
+      <Container key={data.id} data={data}/>
+    ))}
+
     </div>
   )
 }

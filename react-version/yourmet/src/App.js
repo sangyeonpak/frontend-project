@@ -6,7 +6,7 @@ import placeholder from "./images/placeholder.jpg";
 
 
 function App() {
-  const [gallery, setGallery] = useState({});
+  const [gallery, setGallery] = useState([]);
 
   useEffect(() => {
     fetch("http://localhost:3001/api/main", {
@@ -17,16 +17,20 @@ function App() {
         setGallery(data);
       });
   }, []);
+  // console.log(gallery);
 
-  console.log(gallery);
+  function addRow(){
 
-  const [row, setRow] = useState([]);
+  }
   const [image, setImage] = useState([]);
   return (
     <div className="App">
       <Navbar />
       <UserInfo />
-      <Gallery image={image}/>
+      <Gallery gallery={gallery}/>
+      <div className="addRowDiv">
+        <button className="addRowButton" onClick={addRow}>+</button>
+      </div>
     </div>
   );
 }

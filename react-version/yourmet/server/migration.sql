@@ -1,10 +1,11 @@
 DROP TABLE IF EXISTS sangyeonpak;
 
 CREATE TABLE sangyeonpak (
-  id INTEGER,
+  id SERIAL,
+  image_id INTEGER,
   image_url TEXT,
-  artwork_url TEXT,
-  artwork_name TEXT,
+  info_url TEXT,
+  name TEXT,
   artist TEXT,
   year TEXT,
   seen BOOLEAN
