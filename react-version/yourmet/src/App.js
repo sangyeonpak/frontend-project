@@ -8,6 +8,7 @@ import Modal from "./modal/Modal.js";
 
 function App() {
   const [gallery, setGallery] = useState([]);
+  const [modalState, showModal] = useState(false);
 
   useEffect(() => {
     fetch("http://localhost:3001/api/main", {
@@ -20,19 +21,24 @@ function App() {
   }, []);
   // console.log(gallery);
 
+  function closeModalHandler(){
+    showModal(false)
+  }
+
   function addRow(){
 
   }
+
   const [image, setImage] = useState([]);
   return (
     <div className="App">
       <Navbar />
       <UserInfo />
-      <Gallery gallery={gallery}/>
+      <Gallery gallery={gallery} showModal={showModal}/>
       <div className="addRowDiv">
         <button className="addRowButton" onClick={addRow}>+</button>
       </div>
-      <Modal/>
+      {modalState ? <Modal showModal={showModal}/> : null}
     </div>
   );
 }

@@ -13,12 +13,12 @@ function Container(props) {
   }
 
   function addArt() {
-
-      <Modal />
-
+    props.showModal(true);
   }
+
+  //style={{"marginTop": randomMargin.marginTop, "marginLeft": randomMargin.marginLeft}}
   return (
-    <div className="container" style={{"marginTop": randomMargin.marginTop, "marginLeft": randomMargin.marginLeft}}>
+    <div className="container" >
       <div className="imageContainer" >
         <img src={placeholder} className="image"  />
         <div>{artist}h</div>
