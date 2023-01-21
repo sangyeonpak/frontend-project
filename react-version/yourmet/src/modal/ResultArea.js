@@ -2,7 +2,6 @@ import ResultArtwork from "./ResultArtwork.js";
 import { useState } from "react";
 function ResultArea(props) {
   const searchResults = props.searchResults.objectIDs;
-  console.log(searchResults);
   const [index, setIndex] = useState(5);
   function showMore() {
     setIndex((oldIndex) => oldIndex + 5);
@@ -14,7 +13,7 @@ function ResultArea(props) {
     return (
       <div>
         {searchResults.map((result) => (
-          <ResultArtwork key={result} result={result} />
+          <ResultArtwork key={result} result={result} buttonID={props.buttonID} />
         ))}
       </div>
     );
@@ -22,7 +21,7 @@ function ResultArea(props) {
     return (
       <div>
         {searchResults.slice(0, index).map((result) => (
-          <ResultArtwork key={result} result={result} />
+          <ResultArtwork key={result} result={result} buttonID={props.buttonID} />
         ))}
         <button onClick={showMore}>Show more</button>
       </div>

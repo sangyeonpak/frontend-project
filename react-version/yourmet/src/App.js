@@ -9,6 +9,7 @@ import Modal from "./modal/Modal.js";
 function App() {
   const [gallery, setGallery] = useState([]);
   const [modalState, showModal] = useState(false);
+  const [buttonID, setButtonID] = useState("");
 
   useEffect(() => {
     fetch("http://localhost:3001/api/main", {
@@ -24,16 +25,15 @@ function App() {
 
   }
 
-  const [image, setImage] = useState([]);
   return (
     <div className="App">
       <Navbar />
       <UserInfo gallery={gallery} />
-      <Gallery gallery={gallery} showModal={showModal}/>
+      <Gallery gallery={gallery} showModal={showModal} setButtonID={setButtonID}/>
       <div className="addRowDiv">
         <button className="addRowButton" onClick={addRow}>+</button>
       </div>
-      {modalState ? <Modal showModal={showModal}/> : null}
+      {modalState ? <Modal showModal={showModal} buttonID={buttonID}/> : null}
     </div>
   );
 }

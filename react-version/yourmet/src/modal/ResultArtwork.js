@@ -11,6 +11,9 @@ function ResultArtwork(props) {
   const [artistBorn, setArtistBorn] = useState("");
   const [artistDeath, setArtistDeath] = useState("");
 
+  function addToGallery(){
+    console.log(props.buttonID);
+  }
 
   fetch(
     `https://collectionapi.metmuseum.org/public/collection/v1/objects/${props.result}`,
@@ -18,7 +21,6 @@ function ResultArtwork(props) {
   )
     .then((res) => res.json())
     .then((data) => {
-      console.log(data);
       const {
         objectID,
         primaryImageSmall,
@@ -54,6 +56,7 @@ function ResultArtwork(props) {
         <p>{name != "" ? name : "Untitled"}</p>
         <p>{year != "" ? year : "Unknown date"}</p>
         <p>{wing != "" ? wing : "Currently not in display at the Met"}</p>
+        <button onClick={addToGallery}>Add To Gallery</button>
       </div>
     </div>
   )

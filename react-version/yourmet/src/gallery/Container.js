@@ -14,6 +14,7 @@ function Container(props) {
 
   function addArt() {
     props.showModal(true);
+    props.setButtonID(props.buttonID);
   }
 
   //style={{"marginTop": randomMargin.marginTop, "marginLeft": randomMargin.marginLeft}}
