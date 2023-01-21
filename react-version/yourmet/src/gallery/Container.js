@@ -3,7 +3,7 @@ import Modal from "../modal/Modal.js";
 
 function Container(props) {
   // console.log(props);
-  console.log(props.data);
+  // console.log(props.data);
   const { artist, name, seen, year, image_url } = props.data;
   // console.log(artist);
 

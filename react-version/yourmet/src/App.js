@@ -21,10 +21,6 @@ function App() {
   }, []);
   // console.log(gallery);
 
-  function closeModalHandler(){
-    showModal(false)
-  }
-
   function addRow(){
 
   }
@@ -33,7 +29,7 @@ function App() {
   return (
     <div className="App">
       <Navbar />
-      <UserInfo />
+      <UserInfo gallery={gallery} />
       <Gallery gallery={gallery} showModal={showModal}/>
       <div className="addRowDiv">
         <button className="addRowButton" onClick={addRow}>+</button>

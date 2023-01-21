@@ -1,8 +1,9 @@
-function UserInfo() {
+function UserInfo(props) {
   return (
     <div>
       <div>Sangyeon's Met</div>
-      <div>Seen 0 artworks and a curator of 0.</div>
+      <div>Seen
+        <span></span> artworks and a curator of 0.</div>
     </div>
   )
 }
