@@ -105,3 +105,10 @@ img {
 .resultImage{
   width:600px;
 }
+.resultContainer{
+  display:flex;
+}
+
+.resultInfo{
+  width:100%;
+}

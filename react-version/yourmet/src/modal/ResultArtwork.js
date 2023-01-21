@@ -8,6 +8,8 @@ function ResultArtwork(props) {
   const [artist, setArtist] = useState("");
   const [year, setYear] = useState("");
   const [wing, setWing] = useState("");
+  const [artistBorn, setArtistBorn] = useState("");
+  const [artistDeath, setArtistDeath] = useState("");
 
 
   fetch(
@@ -16,12 +18,15 @@ function ResultArtwork(props) {
   )
     .then((res) => res.json())
     .then((data) => {
+      console.log(data);
       const {
         objectID,
         primaryImageSmall,
         objectURL,
         title,
         artistDisplayName,
+        artistBeginDate,
+        artistEndDate,
         objectDate,
         department,
       } = data;
@@ -30,14 +35,26 @@ function ResultArtwork(props) {
       setInfoUrl(objectURL);
       setName(title);
       setArtist(artistDisplayName);
+      setArtistBorn(artistBeginDate);
+      setArtistDeath(artistEndDate);
       setYear(objectDate);
       setWing(department);
     });
 
 
   return (
-    <div>
-      <img className="resultImage"src={image_url}/>
+    <div className="resultContainer">
+      <div className="resultImage">
+        <a href={info_url} target="_blank">
+          <img src={image_url} alt="Currently unavailable for view on YourMet. Click here to view the art on our main website."/>
+        </a>
+      </div>
+      <div className="resultInfo">
+        <p>{artist != "" ? `${artist} (${artistBorn}-${artistDeath})` : "Unknown artist"}</p>
+        <p>{name != "" ? name : "Untitled"}</p>
+        <p>{year != "" ? year : "Unknown date"}</p>
+        <p>{wing != "" ? wing : "Currently not in display at the Met"}</p>
+      </div>
     </div>
   )
 }
