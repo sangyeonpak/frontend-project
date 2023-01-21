@@ -3,6 +3,7 @@ import Navbar from "./navbar/Navbar.js";
 import UserInfo from "./user-info/UserInfo.js";
 import Gallery from "./gallery/Gallery.js";
 import placeholder from "./images/placeholder.jpg";
+import Modal from "./modal/Modal.js";
 
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
       <div className="addRowDiv">
         <button className="addRowButton" onClick={addRow}>+</button>
       </div>
+      <Modal/>
     </div>
   );
 }
