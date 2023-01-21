@@ -19,7 +19,6 @@ function App() {
         setGallery(data);
       });
   }, []);
-  // console.log(gallery);
 
   function addRow(){
 

@@ -96,6 +96,12 @@ img {
   width: 70rem;
   z-index: 10;
   position: fixed;
-  top: 20vh;
+  top: 5vh;
   left: calc(50% - 35rem);
+  overflow-y: auto;
+  max-height: calc(100vh - 170px);
+}
+
+.resultImage{
+  width:600px;
 }
