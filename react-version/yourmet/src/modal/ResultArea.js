@@ -21,7 +21,7 @@ function ResultArea(props) {
     return (
       <div>
         {searchResults.slice(0, index).map((result) => (
-          <ResultArtwork key={result} result={result} buttonID={props.buttonID} />
+          <ResultArtwork key={result} result={result} buttonID={props.buttonID} closeModal={props.closeModal}/>
         ))}
         <button onClick={showMore}>Show more</button>
       </div>

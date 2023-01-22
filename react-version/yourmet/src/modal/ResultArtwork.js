@@ -1,27 +1,29 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function ResultArtwork(props) {
-  const [image_id, setImageId] = useState("");
-  const [image_url, setImageUrl] = useState("");
-  const [info_url, setInfoUrl] = useState("");
-  const [name, setName] = useState("");
-  const [artist, setArtist] = useState("");
-  const [year, setYear] = useState("");
-  const [wing, setWing] = useState("");
-  const [artistBorn, setArtistBorn] = useState("");
-  const [artistDeath, setArtistDeath] = useState("");
+  const [artInfo, setArtInfo] = useState({});
 
   function addToGallery(){
-    console.log(props.buttonID);
+    fetch(`http://localhost:3001/api/art/${artInfo.buttonID}`, {
+      mode: "cors",
+      method: "PATCH",
+      body: JSON.stringify(artInfo),
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      }
+    })
+    // console.log(artInfo);
   }
 
+  useEffect(() => {
   fetch(
     `https://collectionapi.metmuseum.org/public/collection/v1/objects/${props.result}`,
     { mode: "cors" }
   )
     .then((res) => res.json())
     .then((data) => {
-      const {
+      let {
         objectID,
         primaryImageSmall,
         objectURL,
@@ -32,30 +34,39 @@ function ResultArtwork(props) {
         objectDate,
         department,
       } = data;
-      setImageId(objectID);
-      setImageUrl(primaryImageSmall);
-      setInfoUrl(objectURL);
-      setName(title);
-      setArtist(artistDisplayName);
-      setArtistBorn(artistBeginDate);
-      setArtistDeath(artistEndDate);
-      setYear(objectDate);
-      setWing(department);
-    });
+      if (artistDisplayName === "") artistDisplayName = "Unknown artist";
+      if (title === "") title = "Untitled";
+      if (objectDate === "") objectDate = "Unknown date";
+      if (department === "") department = "Currently not in display at the Met";
+
+      setArtInfo({
+        buttonID: props.buttonID,
+        image_id: objectID,
+        image_url: primaryImageSmall,
+        info_url: objectURL,
+        name: title,
+        artist: artistDisplayName,
+        born: artistBeginDate,
+        death: artistEndDate,
+        year: objectDate,
+        wing: department,
+      })
+    })
+  }, []);
 
 
   return (
     <div className="resultContainer">
       <div className="resultImage">
-        <a href={info_url} target="_blank">
-          <img src={image_url} alt="Currently unavailable for view on YourMet. Click here to view the art on our main website."/>
+        <a href={artInfo.info_url} target="_blank">
+          <img src={artInfo.image_url} alt="Currently unavailable for view on YourMet. Click here to view the art on our main website."/>
         </a>
       </div>
       <div className="resultInfo">
-        <p>{artist != "" ? `${artist} (${artistBorn}-${artistDeath})` : "Unknown artist"}</p>
-        <p>{name != "" ? name : "Untitled"}</p>
-        <p>{year != "" ? year : "Unknown date"}</p>
-        <p>{wing != "" ? wing : "Currently not in display at the Met"}</p>
+        <p>{artInfo.artist !== "Unknown artist" ? `${artInfo.artist} (${artInfo.born}-${artInfo.death})` : "Unknown artist"}</p>
+        <p>{artInfo.name}</p>
+        <p>{artInfo.year}</p>
+        <p>{artInfo.wing}</p>
         <button onClick={addToGallery}>Add To Gallery</button>
       </div>
     </div>

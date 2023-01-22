@@ -3,6 +3,7 @@ import Container from "./Container.js";
 function Gallery(props) {
 
   // console.log(props.gallery);
+  //data.id is id from psql
   return (
     <div className="gallery">
     {props.gallery.map((data) => (

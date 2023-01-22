@@ -21,12 +21,12 @@ function Container(props) {
   return (
     <div className="container" >
       <div className="imageContainer" >
-        <img src={placeholder} className="image"  />
-        <div>{artist}h</div>
-        <div>{name}g</div>
-        <div>{year}f</div>
+        <div>{props.buttonID}</div>
+        <img src={(image_url !== null) ? image_url : placeholder} className="image"  />
+        <div>{artist}</div>
+        <div>{name}</div>
+        <div>{year}</div>
         <button className="addArtButton" onClick={addArt}>+</button>
-        {(image_url == null) ? null : (<button>-</button>) }
       </div>
     </div>
   )
