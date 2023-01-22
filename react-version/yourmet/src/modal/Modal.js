@@ -30,7 +30,7 @@ function Modal(props) {
         ></input>
         <button onClick={closeModal}>Close</button>
         <button onClick={searchForArt}>Search</button>
-        <ResultArea searchResults={searchResults} buttonID={props.buttonID} closeModal={closeModal}/>
+        <ResultArea searchResults={searchResults} buttonID={props.buttonID} closeModal={closeModal} setArtWasSelected={props.setArtWasSelected}/>
       </div>
       <div className="modalBackdrop"></div>
     </>

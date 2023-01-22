@@ -32,7 +32,7 @@ app.patch("/api/art/:id", (req, res, next) => {
   const {buttonID, image_id, image_url, info_url, name, artist, year} = req.body;
   console.log(req.body);
   console.log(image_id);
-  sql`UPDATE sangyeonpak SET ${sql(req.body, 'image_id', 'image_url', 'info_url', 'name', 'artist', 'year')} WHERE id=${buttonID} RETURNING *`.then((result) => {
+  sql`UPDATE sangyeonpak SET ${sql(req.body, 'image_id', 'image_url', 'info_url', 'name', 'artist', 'year')} WHERE id=${buttonID}`.then((result) => {
     res.status(202).json(result);
   }).catch(next);
 })

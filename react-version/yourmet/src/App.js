@@ -9,6 +9,7 @@ function App() {
   const [gallery, setGallery] = useState([]);
   const [modalState, showModal] = useState(false);
   const [buttonID, setButtonID] = useState("");
+  const [artWasSelected, setArtWasSelected] = useState(false);
 
   useEffect(() => {
     fetch("http://localhost:3001/api/main", {
@@ -16,11 +17,13 @@ function App() {
     })
       .then((res) => res.json())
       .then((data) => {
-        setGallery(data);
+        //list.sort((a, b) => (a.color > b.color) ? 1 : -1)
+        let sortedData = data.sort((a, b) => (a.id > b.id) ? 1: -1);
+        setGallery(sortedData);
       });
-  }, []);
-  console.log(gallery);
+  }, [artWasSelected]);
 
+  console.log(artWasSelected);
   function addRow(){
 
   }
@@ -29,11 +32,11 @@ function App() {
     <div className="App">
       <Navbar />
       <UserInfo gallery={gallery} />
-      <Gallery gallery={gallery} showModal={showModal} setButtonID={setButtonID}/>
+      <Gallery gallery={gallery} showModal={showModal} setButtonID={setButtonID} artWasSelected={artWasSelected}/>
       <div className="addRowDiv">
         <button className="addRowButton" onClick={addRow}>+</button>
       </div>
-      {modalState ? <Modal showModal={showModal} buttonID={buttonID}/> : null}
+      {modalState ? <Modal showModal={showModal} buttonID={buttonID} setArtWasSelected={setArtWasSelected}/> : null}
     </div>
   );
 }

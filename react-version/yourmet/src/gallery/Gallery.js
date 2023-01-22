@@ -7,7 +7,7 @@ function Gallery(props) {
   return (
     <div className="gallery">
     {props.gallery.map((data) => (
-      <Container key={data.id} data={data} showModal={props.showModal} setButtonID={props.setButtonID} buttonID={data.id}/>
+      <Container key={data.id} data={data} showModal={props.showModal} setButtonID={props.setButtonID} buttonID={data.id} />
     ))}
 
     </div>
