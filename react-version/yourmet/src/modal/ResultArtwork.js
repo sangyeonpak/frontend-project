@@ -15,8 +15,11 @@ function ResultArtwork(props) {
         "Content-Type": "application/json",
       },
     });
-    console.log(Object.getPrototypeOf(props))
-    props.setArtWasSelected((prevState) => !prevState);
+    props.toggleFetchSwitch((prevState) => !prevState);
+    setTimeout(() => {
+      props.toggleFetchSwitch((prevState) => !prevState);
+    }, "25");
+    props.closeModal();
     // console.log(artInfo);
   }
 

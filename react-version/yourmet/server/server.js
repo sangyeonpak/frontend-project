@@ -37,6 +37,13 @@ app.patch("/api/art/:id", (req, res, next) => {
   }).catch(next);
 })
 
+app.post("/api/art/", (req, res, next) => {
+  sql`INSERT INTO sangyeonpak (image_id, image_url, info_url, name, artist, year) VALUES (null, null, null, null, null, null)`
+  .then((result) => {
+    res.status(202).json(result);
+  }).catch(next);
+})
+
 // app.post("/api/items", (req, res, next) => {
 //   const {name,kitchen,bathroom} = req.body;
 //   if (name !== ''){

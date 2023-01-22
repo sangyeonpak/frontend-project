@@ -13,7 +13,13 @@ function ResultArea(props) {
     return (
       <div>
         {searchResults.map((result) => (
-          <ResultArtwork key={result} result={result} buttonID={props.buttonID} />
+          <ResultArtwork
+            key={result}
+            result={result}
+            buttonID={props.buttonID}
+            closeModal={props.closeModal}
+            toggleFetchSwitch={props.toggleFetchSwitch}
+          />
         ))}
       </div>
     );
@@ -21,7 +27,13 @@ function ResultArea(props) {
     return (
       <div>
         {searchResults.slice(0, index).map((result) => (
-          <ResultArtwork key={result} result={result} buttonID={props.buttonID} closeModal={props.closeModal} setArtWasSelected={props.setArtWasSelected}/>
+          <ResultArtwork
+            key={result}
+            result={result}
+            buttonID={props.buttonID}
+            closeModal={props.closeModal}
+            toggleFetchSwitch={props.toggleFetchSwitch}
+          />
         ))}
         <button onClick={showMore}>Show more</button>
       </div>

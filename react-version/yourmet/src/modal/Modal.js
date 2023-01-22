@@ -11,7 +11,9 @@ function Modal(props) {
   const [searchResults, setSearchResults] = useState({});
 
   function searchForArt() {
-    fetch(`https://collectionapi.metmuseum.org/public/collection/v1/search?q=${search}`)
+    fetch(
+      `https://collectionapi.metmuseum.org/public/collection/v1/search?q=${search}`
+    )
       .then((res) => res.json())
       .then((data) => {
         setSearchResults(data);
@@ -30,7 +32,12 @@ function Modal(props) {
         ></input>
         <button onClick={closeModal}>Close</button>
         <button onClick={searchForArt}>Search</button>
-        <ResultArea searchResults={searchResults} buttonID={props.buttonID} closeModal={closeModal} setArtWasSelected={props.setArtWasSelected}/>
+        <ResultArea
+          searchResults={searchResults}
+          buttonID={props.buttonID}
+          closeModal={closeModal}
+          toggleFetchSwitch={props.toggleFetchSwitch}
+        />
       </div>
       <div className="modalBackdrop"></div>
     </>

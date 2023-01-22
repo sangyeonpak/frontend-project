@@ -2,8 +2,9 @@ function UserInfo(props) {
   return (
     <div>
       <div>Sangyeon's Met</div>
-      <div>Seen
-        <span></span> artworks and a curator of 0.</div>
+      <h1>
+        Seen <span></span> artworks and a curator of <span>{props.gallery.filter(container => container.image_id !== null).length}</span>.
+      </h1>
     </div>
   )
 }

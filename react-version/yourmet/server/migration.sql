@@ -1,6 +1,6 @@
-DROP TABLE IF EXISTS sangyeonpak;
+DROP TABLE IF EXISTS display;
 
-CREATE TABLE sangyeonpak (
+CREATE TABLE display (
   id SERIAL,
   image_id INTEGER,
   image_url TEXT,
@@ -8,5 +8,4 @@ CREATE TABLE sangyeonpak (
   name TEXT,
   artist TEXT,
   year TEXT,
-  seen BOOLEAN
 );
