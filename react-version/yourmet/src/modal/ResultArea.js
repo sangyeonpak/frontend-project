@@ -35,6 +35,7 @@ function ResultArea(props) {
             closeModal={props.closeModal}
             seen={props.seen}
             toggleFetchSwitch={props.toggleFetchSwitch}
+            fetchSwitch={props.fetchSwitch}
           />
         ))}
         <button onClick={showMore}>Show more</button>

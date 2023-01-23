@@ -1,11 +1,11 @@
 import placeholder from "../images/placeholder.jpg";
 
 function Container(props) {
-  const { image_id, artist, name, seen, year, image_url } = props.data;
-  const randomMargin = {
-    marginTop: Math.floor(Math.random() * 51),
-    marginLeft: Math.floor(Math.random() * 151),
-  };
+  const { image_id, info_url, artist, name, year, image_url } = props.data;
+  // const randomMargin = {
+  //   marginTop: Math.floor(Math.random() * 51),
+  //   marginLeft: Math.floor(Math.random() * 151),
+  // };
 
   function addArt() {
     props.showModal(true);
@@ -68,7 +68,7 @@ function Container(props) {
     fetch(`http://localhost:3001/api/seen/${image_id}`, {
       mode: "cors",
       method: "DELETE",
-      body: JSON.stringify({image_id}),
+      body: JSON.stringify({ image_id }),
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
@@ -77,7 +77,7 @@ function Container(props) {
     props.toggleFetchSwitch((prevState) => !prevState);
     setTimeout(() => {
       props.toggleFetchSwitch((prevState) => !prevState);
-    }, "10")
+    }, "10");
   }
 
   //style={{"marginTop": randomMargin.marginTop, "marginLeft": randomMargin.marginLeft}}
@@ -85,21 +85,28 @@ function Container(props) {
     <div className="container">
       <div className="imageContainer">
         <div>{props.buttonID}</div>
-        <img
-          src={image_url !== null ? image_url : placeholder}
-          className="image"
-        />
+        <a href={info_url} target="_blank" rel="noreferrer">
+          <img
+            src={image_url !== null ? image_url : placeholder}
+            alt="Currently unavailable for view on YourMet. Click here to view the art on our main website."
+            className="image"
+          />
+        </a>
         <div>{artist}</div>
         <div>{name}</div>
         <div>{year}</div>
         <button className="addArtButton" onClick={addArt}>
           +
         </button>
-        { (image_url !== null) ?
-          (props.seen.some((match) => match.image_id === image_id) ? filledEye() : unfilledEye())
-          :
+        {image_url !== null ? (
+          props.seen.some((match) => match.image_id === image_id) ? (
+            filledEye()
+          ) : (
+            unfilledEye()
+          )
+        ) : (
           <></>
-        }
+        )}
       </div>
     </div>
   );

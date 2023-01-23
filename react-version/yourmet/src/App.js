@@ -73,6 +73,7 @@ function App() {
           buttonID={buttonID}
           seen={seen}
           toggleFetchSwitch={toggleFetchSwitch}
+          fetchSwitch={fetchSwitch}
         />
       ) : null}
     </div>

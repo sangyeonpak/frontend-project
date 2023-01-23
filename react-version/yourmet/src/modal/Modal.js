@@ -38,6 +38,7 @@ function Modal(props) {
           closeModal={closeModal}
           seen={props.seen}
           toggleFetchSwitch={props.toggleFetchSwitch}
+          fetchSwitch={props.fetchSwitch}
         />
       </div>
       <div className="modalBackdrop"></div>

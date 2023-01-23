@@ -20,7 +20,6 @@ function ResultArtwork(props) {
       props.toggleFetchSwitch((prevState) => !prevState);
     }, "25");
     props.closeModal();
-    // console.log(artInfo);
   }
 
   function filledEye() {
@@ -63,7 +62,7 @@ function ResultArtwork(props) {
     fetch(`http://localhost:3001/api/seen/`, {
       mode: "cors",
       method: "POST",
-      body: JSON.stringify(props.data),
+      body: JSON.stringify(artInfo),
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
@@ -128,7 +127,9 @@ function ResultArtwork(props) {
           wing: department,
         });
       });
-  }, [buttonID, image_id]);
+  }, [buttonID, image_id, props.fetchSwitch]);
+
+
 
   return (
     <div className="resultContainer">
