@@ -18,6 +18,7 @@ function ResultArea(props) {
             result={result}
             buttonID={props.buttonID}
             closeModal={props.closeModal}
+            seen={props.seen}
             toggleFetchSwitch={props.toggleFetchSwitch}
           />
         ))}
@@ -32,6 +33,7 @@ function ResultArea(props) {
             result={result}
             buttonID={props.buttonID}
             closeModal={props.closeModal}
+            seen={props.seen}
             toggleFetchSwitch={props.toggleFetchSwitch}
           />
         ))}

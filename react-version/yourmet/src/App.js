@@ -50,6 +50,7 @@ function App() {
     }, "10");
   }
 
+
   return (
     <div className="App">
       <Navbar />
@@ -70,6 +71,7 @@ function App() {
         <Modal
           showModal={showModal}
           buttonID={buttonID}
+          seen={seen}
           toggleFetchSwitch={toggleFetchSwitch}
         />
       ) : null}

@@ -1,11 +1,7 @@
 import placeholder from "../images/placeholder.jpg";
 
 function Container(props) {
-  // console.log(props);
-  console.log(props.data);
   const { image_id, artist, name, seen, year, image_url } = props.data;
-  // console.log(artist);
-  console.log(props.seen);
   const randomMargin = {
     marginTop: Math.floor(Math.random() * 51),
     marginLeft: Math.floor(Math.random() * 151),

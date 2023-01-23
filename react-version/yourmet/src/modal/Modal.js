@@ -36,6 +36,7 @@ function Modal(props) {
           searchResults={searchResults}
           buttonID={props.buttonID}
           closeModal={closeModal}
+          seen={props.seen}
           toggleFetchSwitch={props.toggleFetchSwitch}
         />
       </div>
