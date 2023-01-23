@@ -1,0 +1,1 @@
+INSERT INTO seen (image_id, image_url, info_url, name, artist, year) VALUES (436535, 'https://images.metmuseum.org/CRDImages/ep/web-large/DT1567.jpg', 'https://www.metmuseum.org/art/collection/search/436535', 'Wheat Field with Cypresses', 'Vincent van Gogh', '1889');

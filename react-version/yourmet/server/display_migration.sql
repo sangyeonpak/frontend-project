@@ -7,5 +7,5 @@ CREATE TABLE display (
   info_url TEXT,
   name TEXT,
   artist TEXT,
-  year TEXT,
+  year TEXT
 );

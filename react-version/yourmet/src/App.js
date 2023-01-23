@@ -9,8 +9,10 @@ function App() {
   const [modalState, showModal] = useState(false);
   const [buttonID, setButtonID] = useState("");
   const [fetchSwitch, toggleFetchSwitch] = useState(false);
+  const [seen, setSeen] = useState([]);
+
   useEffect(() => {
-    fetch("http://localhost:3001/api/main", {
+    fetch("http://localhost:3001/api/art", {
       mode: "cors",
     })
       .then((res) => res.json())
@@ -21,6 +23,17 @@ function App() {
       });
   }, [fetchSwitch]);
 
+  useEffect(() => {
+    fetch("http://localhost:3001/api/seen", {
+      mode: "cors",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        //list.sort((a, b) => (a.color > b.color) ? 1 : -1)
+        let sortedData = data.sort((a, b) => (a.id > b.id ? 1 : -1));
+        setSeen(sortedData);
+      });
+  }, [fetchSwitch]);
 
   function addRow() {
     fetch(`http://localhost:3001/api/art/`, {
@@ -40,11 +53,13 @@ function App() {
   return (
     <div className="App">
       <Navbar />
-      <UserInfo gallery={gallery} />
+      <UserInfo gallery={gallery} seen={seen} />
       <Gallery
         gallery={gallery}
         showModal={showModal}
         setButtonID={setButtonID}
+        seen={seen}
+        toggleFetchSwitch={toggleFetchSwitch}
       />
       <div className="addRowDiv">
         <button className="addRowButton" onClick={addRow}>

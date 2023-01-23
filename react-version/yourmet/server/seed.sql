@@ -1,3 +1,0 @@
-INSERT INTO sangyeonpak (image_id, image_url, info_url, name, artist, year, seen) VALUES (null, null, null, null, null, null, false);
-INSERT INTO sangyeonpak (image_id, image_url, info_url, name, artist, year, seen) VALUES (null, null, null, null, null, null, false);
-INSERT INTO sangyeonpak (image_id, image_url, info_url, name, artist, year, seen) VALUES (null, null, null, null, null, null, false);
