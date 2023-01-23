@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "./navbar/Navbar.js";
+import OffCanvas from "./navbar/OffCanvas.js";
 import UserInfo from "./user-info/UserInfo.js";
 import Gallery from "./gallery/Gallery.js";
 import Modal from "./modal/Modal.js";
+
 
 function App() {
   const [gallery, setGallery] = useState([]);
@@ -54,6 +56,7 @@ function App() {
   return (
     <div className="App">
       <Navbar />
+      <OffCanvas gallery={gallery} seen={seen}/>
       <UserInfo gallery={gallery} seen={seen} />
       <Gallery
         gallery={gallery}

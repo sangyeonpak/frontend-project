@@ -112,3 +112,11 @@ img {
 .resultInfo{
   width:100%;
 }
+
+.listView{
+  margin-left: auto;
+}
+
+.offCanvas{
+  z-index: 4;
+}

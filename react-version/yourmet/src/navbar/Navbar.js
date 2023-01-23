@@ -16,6 +16,7 @@ function Navbar() {
           <div className="bottombarLinks">Learn with Us</div>
           <div className="bottombarLinks">Research</div>
           <div className="bottombarLinks">Shop</div>
+          <button className="listView">List View</button>
         </div>
       </div>
     </div>
