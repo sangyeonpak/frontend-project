@@ -5,7 +5,7 @@ function OffCanvas(props) {
   return (
     <>
       <div className="offCanvas">
-        <button onClick={closeCanvas}>Close Canvas</button>
+        <button className="closeCanvas" onClick={closeCanvas}>x</button>
         <h3>On Display</h3>
         <ul>
           {props.gallery.map((data) => (

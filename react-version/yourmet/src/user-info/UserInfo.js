@@ -1,10 +1,10 @@
 function UserInfo(props) {
   return (
-    <div>
-      <div>Sangyeon's Met</div>
-      <h1>
-        Seen <span>{props.seen.length}</span> artworks and a curator of <span>{props.gallery.filter(container => container.image_id !== null).length}</span>.
-      </h1>
+    <div className="userInfo">
+      <div className="username">Sangyeon's Met</div>
+      <div className="userStats">
+        Seen <span className="userStats">{props.seen.length}</span> artworks and a curator of <span className="userStats">{props.gallery.filter(container => container.image_id !== null).length}</span>.
+      </div>
     </div>
   )
 }

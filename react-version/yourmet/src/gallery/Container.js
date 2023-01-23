@@ -102,10 +102,12 @@ function Container(props) {
   return (
     <div className="container">
       <div className="imageContainer">
-        <div>{props.buttonID}</div>
+        {/* <div>{props.buttonID}</div> */}
+        <div className="deleteButtonDiv">
         <button className="deleteContainerButton" onClick={deleteContainer}>
           X
         </button>
+        </div>
         <a href={info_url} target="_blank" rel="noreferrer">
           <img
             src={image_url !== null ? image_url : placeholder}

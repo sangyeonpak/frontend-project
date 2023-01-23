@@ -1,15 +1,22 @@
 import metLogo from "../images/metlogo.png";
+import VisitDropdown from "./dropdowns/Visit.jsx";
+import Exhibitions from "./dropdowns/Exhibitions.jsx";
+import ArtDropdown from "./dropdowns/Art.jsx";
+import LearnWithUs from "./dropdowns/LearnWithUs.jsx";
+import ResearchDropdown from "./dropdowns/Research.jsx";
 
 function Navbar(props) {
+
   function showCanvasHandler() {
     props.showCanvas(true);
   }
+
   return (
     <div className="navbarWrapper">
       <img src={metLogo} className="metLogo"></img>
       <div className="navbar">
         <div className="topbar">
-          <div className="topbarLinks">Buy tickets</div>
+          <div className="topbarLinks tickets">Buy tickets</div>
           <div className="topbarLinks member">Become a Member</div>
           <div className="topbarLinks donation">
             |
@@ -19,14 +26,14 @@ function Navbar(props) {
           </div>
         </div>
         <div className="bottombar">
-          <div className="bottombarLinks">Visit</div>
-          <div className="bottombarLinks">Exhibitions and Events</div>
-          <div className="bottombarLinks">Art</div>
-          <div className="bottombarLinks">Learn with Us</div>
-          <div className="bottombarLinks">Research</div>
-          <div className="bottombarLinks">Shop</div>
+          <VisitDropdown />
+          <Exhibitions />
+          <ArtDropdown />
+          <LearnWithUs />
+          <ResearchDropdown />
+          <div className="bottombarLinks"><a href="https://www.metmuseum.org/shop" target="_blank" rel="noreferrer">Shop</a></div>
           <div className="listView" onClick={showCanvasHandler}>
-            View Your Gallery
+            Gallery List View
           </div>
         </div>
       </div>

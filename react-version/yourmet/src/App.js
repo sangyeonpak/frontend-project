@@ -58,6 +58,7 @@ function App() {
       {offCanvasState ? (
         <OffCanvas gallery={gallery} seen={seen} showCanvas={showCanvas} />
       ) : null}
+      <div className="separator"></div>
       <UserInfo gallery={gallery} seen={seen} />
       <Gallery
         gallery={gallery}
