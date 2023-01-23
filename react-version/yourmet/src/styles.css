@@ -1,8 +1,9 @@
-*{
-  outline: #4CAF50 solid 1px;
+* {
+  font-family: "Roboto", sans-serif;
+  font-weight: bold;
 }
 
-.navbarWrapper{
+.navbarWrapper {
   background-color: white;
 }
 .navbar {
@@ -15,39 +16,61 @@
   display: flex;
   justify-content: flex-end;
 }
-.topbarLinks{
-  margin: 5px;
+.topbarLinks {
+  padding: 6px 10px;
+  font-size: 13px;
+  transform: scale(.96, 1);
 }
 
-.bottombar{
+.member,
+.donation{
+  padding-right: 0;
+}
+
+.divider{
+  left: -5px;
+}
+
+.bottombar {
   display: flex;
-  border: 1px solid black;
   align-items: flex-start;
+  height: 45px;
+  margin-left: 40px;
 }
+.metLogo {
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  z-index: 1;
+  left: 7%;
+  top: 20px;
+  align-self: center;
+}
+.bottombarLinks {
+  padding: 7px 20px 10px;
+  font-size: 16px;
+  transform: scale(1, 0.95);
 
-.bottomLinks{
-  margin: 5px;
 }
 
 .App {
   background-color: grey;
 }
 
-body{
+body {
   background-color: red;
   margin: 0;
 }
 
 .gallery {
-  display:flex;
+  display: flex;
   background-color: white;
   margin: 100px;
   padding: 20px;
   flex-wrap: wrap;
 }
 
-
-.container{
+.container {
   margin: auto;
   justify-content: space-evenly;
 }
@@ -56,11 +79,11 @@ img {
   width: 100%;
 }
 
-.imageContainer{
-  position:relative;
-  text-align:center;
+.imageContainer {
+  position: relative;
+  text-align: center;
   background-color: rgb(252, 252, 252);
-  border:1px solid lightgray;
+  border: 1px solid lightgray;
   padding: 5px;
   margin: 30px;
   top: 50%;
@@ -68,16 +91,16 @@ img {
   transform: translateY(0%);
 }
 
-.addRowDiv{
+.addRowDiv {
   display: flex;
   margin-top: 30px;
   justify-content: center;
 }
-.addRowButton{
+.addRowButton {
   width: 40%;
 }
 
-.modalBackdrop{
+.modalBackdrop {
   position: fixed;
   z-index: 1;
   background-color: rgba(0, 0, 0, 0.75);
@@ -102,21 +125,44 @@ img {
   max-height: calc(100vh - 170px);
 }
 
-.resultImage{
-  width:600px;
+.resultImage {
+  width: 600px;
 }
-.resultContainer{
-  display:flex;
-}
-
-.resultInfo{
-  width:100%;
+.resultContainer {
+  display: flex;
 }
 
-.listView{
+.resultInfo {
+  width: 100%;
+}
+
+.listView {
   margin-left: auto;
+  padding: 7px 0px 10px;
+  font-size: 18px;
 }
 
-.offCanvas{
+.offCanvas {
   z-index: 4;
+  position: fixed;
+  height: 100%;
+  width: 25vw;
+  top: 0;
+  background-color: white;
+  padding: 15px;
+}
+
+.offCanvasBackdrop {
+  position: fixed;
+  z-index: 1;
+  background-color: rgba(0, 0, 0, 0.75);
+  width: 100%;
+  height: 100vh;
+  top: 0;
+  left: 0;
+}
+
+.listInfo {
+  color: black;
+  text-decoration: none;
 }

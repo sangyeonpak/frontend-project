@@ -5,10 +5,10 @@ import UserInfo from "./user-info/UserInfo.js";
 import Gallery from "./gallery/Gallery.js";
 import Modal from "./modal/Modal.js";
 
-
 function App() {
   const [gallery, setGallery] = useState([]);
   const [modalState, showModal] = useState(false);
+  const [offCanvasState, showCanvas] = useState(false);
   const [buttonID, setButtonID] = useState("");
   const [fetchSwitch, toggleFetchSwitch] = useState(false);
   const [seen, setSeen] = useState([]);
@@ -52,11 +52,12 @@ function App() {
     }, "10");
   }
 
-
   return (
     <div className="App">
-      <Navbar />
-      <OffCanvas gallery={gallery} seen={seen}/>
+      <Navbar showCanvas={showCanvas} />
+      {offCanvasState ? (
+        <OffCanvas gallery={gallery} seen={seen} showCanvas={showCanvas} />
+      ) : null}
       <UserInfo gallery={gallery} seen={seen} />
       <Gallery
         gallery={gallery}
