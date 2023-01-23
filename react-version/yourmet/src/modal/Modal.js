@@ -24,16 +24,18 @@ function Modal(props) {
     <>
       <div className="modal">
         <div className="searchDiv">
-          <p>Search for an artwork or artist</p>
+          <div className="searchTextSeparator"></div>
+          <div className="searchText">Search for an artwork or artist</div>
+        </div>
           <input
+            className="searchBox"
             type="text"
             value={search}
             onChange={(event) => setSearch(event.target.value)}
             onSubmit={searchForArt}
           ></input>
           <button className="closeModalButton" onClick={closeModal}>X</button>
-          <button onClick={searchForArt}>Search</button>
-        </div>
+          <button className="submitSearchButton" onClick={searchForArt}>Search</button>
         <ResultArea
           searchResults={searchResults}
           buttonID={props.buttonID}

@@ -24,7 +24,7 @@ function ResultArtwork(props) {
 
   function filledEye() {
     return (
-      <button className="markUnseen" onClick={undoSeen}>
+      <button className="markUnseenResults" onClick={undoSeen}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="30"
@@ -42,7 +42,7 @@ function ResultArtwork(props) {
 
   function unfilledEye() {
     return (
-      <button className="markSeenButton" onClick={markSeen}>
+      <button className="markSeenButtonResults" onClick={markSeen}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="30"
@@ -142,16 +142,18 @@ function ResultArtwork(props) {
         </a>
       </div>
       <div className="resultInfo">
-        <p>
+        <p className="resultInfoText">
           {artInfo.artist !== "Unknown artist"
             ? `${artInfo.artist} (${artInfo.born}-${artInfo.death})`
             : "Unknown artist"}
         </p>
-        <p>{artInfo.name}</p>
-        <p>{artInfo.year}</p>
-        <p>{artInfo.wing}</p>
-        <button onClick={addToGallery}>Add To Gallery</button>
+        <p className="resultInfoText resultInfoName">{artInfo.name}</p>
+        <p className="resultInfoText">{artInfo.year}</p>
+        <p className="resultInfoText">{artInfo.wing}</p>
+        <div className="resultButtonsDiv">
         {(props.seen.some((match) => match.image_id === image_id) ? filledEye() : unfilledEye())}
+        <button className="addToGalleryButton" onClick={addToGallery}>+</button>
+        </div>
       </div>
     </div>
   );

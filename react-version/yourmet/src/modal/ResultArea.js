@@ -38,7 +38,7 @@ function ResultArea(props) {
             fetchSwitch={props.fetchSwitch}
           />
         ))}
-        <button onClick={showMore}>Show more</button>
+        <button className="showMoreButton" onClick={showMore}>Show more</button>
       </div>
     );
   }

@@ -126,10 +126,14 @@ img {
   justify-content: center;
 }
 
+
+.addToGalleryButton,
 .markSeenButton,
+.markUnseen,
+.markSeenButtonResults,
+.markUnseenResults,
 .closeCanvas,
 .deleteContainerButton,
-.markUnseen,
 .closeModalButton,
 .addArtButton{
   position: absolute;
@@ -140,8 +144,34 @@ img {
   width: 45px;
   height: 45px;
   background-color: white;
-  opacity: 0.5;
   border: 1px solid grey;
+}
+
+.submitSearchButton,
+.showMoreButton{
+  margin-top: 5px;
+  font-size: 20px;
+  height: 45px;
+  background-color: white;
+  border: 1px solid grey;
+}
+
+.submitSearchButton{
+  height: 56px;
+  position:absolute;
+  top: 75px;
+  right: 88px;
+}
+.resultButtonsDiv{
+  display:flex;
+  align-self: end;
+}
+.markSeenButtonResults,
+.markUnseenResults{
+  position: relative;
+}
+.addToGalleryButton{
+  position: relative;
 }
 
 .markSeenButton,
@@ -150,8 +180,23 @@ img {
   bottom: 5px;
 }
 
+.searchTextSeparator{
+  width:7.1%;
+}
+
 .closeModalButton{
   top: 5px;
+}
+.searchText{
+  text-align:left;
+  padding-bottom: 10px;
+  font-size: 20px;
+}
+.searchBox{
+  width: 80%;
+  height: 50px;
+  font-size: 30px;
+  margin-bottom: 20px;
 }
 .deleteButtonDiv{
   display:flex;
@@ -203,17 +248,31 @@ img {
 }
 
 .searchDiv{
-
+  display:flex;
+  margin-top: 30px;
 }
 .resultImage {
   width: 600px;
 }
 .resultContainer {
   display: flex;
+  outline: 1px solid lightgray;
+  padding: 5px;
 }
 
 .resultInfo {
   width: 100%;
+  text-align: left;
+  padding-left: 30px;
+  font-weight: 400;
+}
+.resultInfoText{
+  font-size: 18px;
+  font-weight: 100;
+}
+.resultInfoName{
+  font-size: 30px;
+  font-style: italic;
 }
 .tickets{
   background-color: rgb(214, 212, 212);
