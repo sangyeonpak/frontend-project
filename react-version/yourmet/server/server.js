@@ -51,6 +51,15 @@ app.post("/api/seen/", (req, res, next) => {
   }).catch(next);
 })
 
+app.delete("/api/art/:id", (req, res, next) => {
+  const {databaseID} = req.body;
+  console.log(req.body);
+  sql`DELETE FROM display WHERE id = ${databaseID}`
+  .then((result) => {
+    res.status(202).json(result);
+  }).catch(next);
+})
+
 app.delete("/api/seen/:id", (req, res, next) => {
   const {image_id} = req.body;
   console.log(req.body);

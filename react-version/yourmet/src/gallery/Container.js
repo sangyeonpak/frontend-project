@@ -12,6 +12,24 @@ function Container(props) {
     props.setButtonID(props.buttonID);
   }
 
+  let databaseID = props.buttonID
+
+  function deleteContainer() {
+    fetch(`http://localhost:3001/api/art/${databaseID}`, {
+      mode: "cors",
+      method: "DELETE",
+      body: JSON.stringify({ databaseID }),
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+    });
+    props.toggleFetchSwitch((prevState) => !prevState);
+    setTimeout(() => {
+      props.toggleFetchSwitch((prevState) => !prevState);
+    }, "10");
+  }
+
   function filledEye() {
     return (
       <button className="markUnseen" onClick={undoSeen}>
@@ -85,6 +103,9 @@ function Container(props) {
     <div className="container">
       <div className="imageContainer">
         <div>{props.buttonID}</div>
+        <button className="deleteContainerButton" onClick={deleteContainer}>
+          X
+        </button>
         <a href={info_url} target="_blank" rel="noreferrer">
           <img
             src={image_url !== null ? image_url : placeholder}
