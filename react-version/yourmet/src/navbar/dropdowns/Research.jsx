@@ -13,7 +13,7 @@ function ResearchDropdown(props) {
     <div className="bottombarLinks">
       <a href="#" rel="noreferrer" onMouseEnter={enterHandler} onMouseLeave={exitHandler}>Research</a>
       {mouseState ?
-      <div className="dropdownMenu onMouseEnter={enterHandler} onMouseLeave={exitHandler}">
+      <div className="dropdownMenu" onMouseEnter={enterHandler} onMouseLeave={exitHandler}>
         <div className="dropdownLinks"><a href="https://www.metmuseum.org/art/libraries-and-research-centers" target="_blank" rel="noreferrer">Libraries and Research Centers</a></div>
       </div>
       :

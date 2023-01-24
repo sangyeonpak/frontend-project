@@ -37,7 +37,7 @@ function App() {
       });
   }, [fetchSwitch]);
 
-  function addRow() {
+  function addContainer() {
     fetch(`http://localhost:3001/api/art/`, {
       mode: "cors",
       method: "POST",
@@ -67,11 +67,7 @@ function App() {
         seen={seen}
         toggleFetchSwitch={toggleFetchSwitch}
       />
-      <div className="addRowDiv">
-        <button className="addRowButton" onClick={addRow}>
-          +
-        </button>
-      </div>
+        <button className="addContainerButton" onClick={addContainer}>Add more art</button>
       {modalState ? (
         <Modal
           showModal={showModal}

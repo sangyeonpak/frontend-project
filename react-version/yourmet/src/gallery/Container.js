@@ -115,9 +115,9 @@ function Container(props) {
             className="image"
           />
         </a>
-        <div>{artist}</div>
-        <div>{name}</div>
-        <div>{year}</div>
+        <div className="displayedArtInfo">{artist}</div>
+        <div className="displayedArtInfoName">{name}</div>
+        <div className="displayedArtInfo">{year}</div>
         <button className="addArtButton" onClick={addArt}>
           +
         </button>
