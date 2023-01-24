@@ -13,14 +13,16 @@ function Navbar(props) {
 
   return (
     <div className="navbarWrapper">
-      <img src={metLogo} className="metLogo"></img>
+      <a href="https://www.metmuseum.org/" target="_blank" rel="noreferrer">
+        <img src={metLogo} className="metLogo"></img>
+      </a>
       <div className="navbar">
         <div className="topbar">
-          <div className="topbarLinks tickets">Buy tickets</div>
-          <div className="topbarLinks member">Become a Member</div>
+          <div className="topbarLinks tickets"><a href="https://engage.metmuseum.org/admission/?promocode=48946" target="_blank" rel="noreferrer">Buy tickets</a></div>
+          <div className="topbarLinks member"><a href="https://engage.metmuseum.org/members/members-count/?promocode=49261" target="_blank" rel="noreferrer">Become a Member</a></div>
           <div className="topbarLinks donation">
             |
-            <a href="" className="topbarLinks donation">
+            <a href="https://engage.metmuseum.org/donate?promocode=49278" target="_blank" rel="noreferrer" className="topbarLinks donation">
               Make a donation
             </a>
           </div>
